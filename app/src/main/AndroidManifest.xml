@@ -7,24 +7,28 @@
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
 
-
     <application
+        android:name="com.orm.SugarApp"
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
+        android:theme="@style/AppTheme">
+        <meta-data
+            android:name="DATABASE"
+            android:value="sugar_example.db" />
+        <meta-data
+            android:name="VERSION"
+            android:value="1" />
+        <meta-data
+            android:name="QUERY_LOG"
+            android:value="true" />
 
-        android:name="com.orm.SugarApp">
-
-        <meta-data android:name="DATABASE" android:value="sugar_example.db"/>
-        <meta-data android:name="VERSION" android:value="1"/>
-        <meta-data android:name="QUERY_LOG" android:value="true"/>
-
-        <!-- TODO check wheter it is a valid package name-->
-        <meta-data android:name="DOMAIN_PACKAGE_NAME" android:value="com.example"/>
-
+        <!-- TODO check wheter it is a valid package name -->
+        <meta-data
+            android:name="DOMAIN_PACKAGE_NAME"
+            android:value="com.example" />
 
         <activity android:name=".MainActivity">
             <intent-filter>
@@ -33,13 +37,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-
         <activity android:name=".logic.LogicTest" />
+        <activity android:name=".ChatListActivity" />
         <activity
             android:name=".LoginActivity"
-            android:label="@string/title_activity_login" />
-
+            android:label="@string/title_activity_login"></activity>
     </application>
 
 </manifest>
