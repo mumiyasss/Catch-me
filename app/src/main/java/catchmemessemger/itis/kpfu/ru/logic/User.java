@@ -17,8 +17,6 @@ public class User {
         this.account = account;
     }
 
-    // TODO toString(); method
-
     @Override
     public String toString() {
         return "User{" +
