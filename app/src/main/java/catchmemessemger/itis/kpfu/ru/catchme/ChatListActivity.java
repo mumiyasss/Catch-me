@@ -1,7 +1,10 @@
 package catchmemessemger.itis.kpfu.ru.catchme;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
@@ -32,7 +35,7 @@ public class ChatListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_list);
-
+        //TODO getting chats info
         addChat("User1");
         addChat("User2");
         addChat("User3");
@@ -62,5 +65,16 @@ public class ChatListActivity extends AppCompatActivity {
 
         ListView lv = (ListView) findViewById(R.id.lv);
         lv.setAdapter(sAdapter);
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(ChatListActivity.this, ChatActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
     }
 }
