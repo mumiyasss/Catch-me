@@ -10,16 +10,22 @@ import com.orm.SugarRecord;
 public class Account extends SugarRecord {
 
     private String login;
-    private String password;
+    private String sessionId;
 
     // TODO store session id
 
     public Account() {
     }
 
-    public Account(String login, String password) {
+    public Account(String login) {
         this.login = login;
-        this.password = password;
+
+        // TODO net stuff
+        // get sessionid from server
+
+
+
+        this.sessionId = "";
     }
 
     // TODO toString();
@@ -29,7 +35,7 @@ public class Account extends SugarRecord {
         return "Account{" +
                 "login='" + login + '\'' +
                 // !!!
-                ", password='" + "****" + '\'' +
+                ", sessionId='" + sessionId + '\'' +
                 '}'
         ;
     }

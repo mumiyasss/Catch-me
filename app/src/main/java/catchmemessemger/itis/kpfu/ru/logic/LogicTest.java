@@ -33,7 +33,7 @@ public class LogicTest extends AppCompatActivity {
 
         // TODO get user's login & password
 
-        Account account = new Account("DEFAULT", "PASSWORD");
+        Account account = new Account("DEFAULT_LOGIN");
 
         // TODO get user's name
         User user = new User("DEFAULT_NAME", account);
