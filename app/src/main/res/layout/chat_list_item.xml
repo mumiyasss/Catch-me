@@ -12,22 +12,5 @@
         android:text="User">
     </TextView>
 
-    <TextView
-        android:id="@+id/lastMassage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/userName"
-        android:layout_gravity="left"
-        android:layout_marginStart="32dp"
-        android:text="Message"></TextView>
-
-    <TextView
-        android:id="@+id/time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/lastMassage"
-        android:layout_alignParentEnd="true"
-        android:text="Time" />
 
 </RelativeLayout>
