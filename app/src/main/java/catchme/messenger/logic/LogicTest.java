@@ -1,4 +1,4 @@
-package catchmemessemger.itis.kpfu.ru.logic;
+package catchme.messenger.logic;
 
 
 import android.content.Context;
@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import catchmemessemger.itis.kpfu.ru.catchme.R;
+import catchme.messenger.catchme.R;
 
 public class LogicTest extends AppCompatActivity {
 
@@ -35,8 +35,6 @@ public class LogicTest extends AppCompatActivity {
 
         Account account = new Account("DEFAULT_LOGIN");
 
-        // TODO get user's name
-        User user = new User("DEFAULT_NAME", account);
 
         // TODO NET stuff
 

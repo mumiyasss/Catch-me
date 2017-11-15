@@ -1,4 +1,4 @@
-package catchmemessemger.itis.kpfu.ru.logic;
+package catchme.messenger.logic;
 
 
 import com.orm.SugarRecord;
@@ -11,7 +11,7 @@ import java.util.Date;
 
 public class Message extends SugarRecord {
 
-    private User owner;
+    private Account owner;
     // PRIVATE IS NOT PERMANENT
     private String text;
     private Date date;
@@ -22,7 +22,7 @@ public class Message extends SugarRecord {
     public Message() {
     }
 
-    public Message(User owner, String text, Date date) {
+    public Message(Account owner, String text, Date date) {
         this.owner = owner;
         this.text = text;
         this.date = date;

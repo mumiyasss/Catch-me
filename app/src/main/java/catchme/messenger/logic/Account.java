@@ -1,4 +1,4 @@
-package catchmemessemger.itis.kpfu.ru.logic;
+package catchme.messenger.logic;
 
 import com.orm.SugarRecord;
 

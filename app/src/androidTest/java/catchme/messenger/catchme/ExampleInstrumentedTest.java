@@ -1,4 +1,4 @@
-package catchmemessemger.itis.kpfu.ru.catchme;
+package catchme.messenger.catchme;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("catchmemessemger.itis.kpfu.ru.catchme", appContext.getPackageName());
+        assertEquals("catchme.messenger.catchme", appContext.getPackageName());
     }
 }
