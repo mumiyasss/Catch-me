@@ -8,6 +8,9 @@ import android.os.Bundle;
 
 import catchme.messenger.catchme.R;
 
+
+
+// TEMPORARILY CLASS
 public class LogicTest extends AppCompatActivity {
 
     @Override
@@ -15,8 +18,6 @@ public class LogicTest extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_logic_test);
     }
-
-
 
     /* TODO LIST *///:
     /*  get user's login & password
@@ -33,7 +34,7 @@ public class LogicTest extends AppCompatActivity {
 
         // TODO get user's login & password
 
-        Account account = new Account("DEFAULT_LOGIN");
+//        Account account = new Account("DEFAULT_LOGIN");
 
 
         // TODO NET stuff
@@ -41,7 +42,7 @@ public class LogicTest extends AppCompatActivity {
         // TODO VALIDATION stuff
 
         // SAVING TO DATABASE
-        account.save();
+//        account.save();
 
         // TODO ChatActivity class
 //        startActivity(new Intent(context, ChatActiviry.class));
@@ -62,11 +63,11 @@ public class LogicTest extends AppCompatActivity {
 
         // deleting account from device
 //        java.util.List<Account> allAccount = Account.listAll(Account.class);
-        Account.deleteAll(Account.class);
+//        Account.deleteAll(Account.class);
 
         // clearing messages cache
 //        java.util.List<Message> messagesCache = Message.listAll(Message.class);
-        Message.deleteAll(Message.class);
+//        Message.deleteAll(Message.class);
     }
 
 

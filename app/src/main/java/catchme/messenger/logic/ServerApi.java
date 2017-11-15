@@ -15,11 +15,38 @@ import java.util.List;
 
 public interface ServerApi {
 
-    // TODO all the stuff
+    String ADDRESS = "http://ksftx.pythonanywhere.com/";
 
-    @GET("/api/get")
-    Call<List> getData(
+    // TODO this
+    @GET("/api/get/")
+    Call<List<Message>> getChat(
             @Query("name") String resourseName,
             @Query("num") int count
     );
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

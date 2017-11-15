@@ -1,42 +1,50 @@
 package catchme.messenger.logic;
 
-
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 import com.orm.SugarRecord;
 
-import java.util.Date;
-
 /**
- * Created by cosmo on 10-Nov-17. 9:13 PM
+ * Created by cosmo on 15-Nov-17.
+ * 5:11 PM
+ * Author: cosmos
  */
 
 public class Message extends SugarRecord {
 
-    private Account owner;
-    // PRIVATE IS NOT PERMANENT
+
+
+    @SerializedName("text")
+    @Expose
     private String text;
-    private Date date;
+    @SerializedName("chat")
+    @Expose
+    private Integer chat;
 
-    // TODO think about bounds w/ chat
-
-
-    public Message() {
+    public String getText() {
+        return text;
     }
 
-    public Message(Account owner, String text, Date date) {
-        this.owner = owner;
+    public void setText(String text) {
         this.text = text;
-        this.date = date;
     }
 
-    // TODO toString();
+    public Integer getChat() {
+        return chat;
+    }
+
+    public void setChat(Integer chat) {
+        this.chat = chat;
+    }
 
     @Override
     public String toString() {
-        return "Message{" +
-                "owner=" + owner +
-                ", text='" + text + '\'' +
-                ", date=" + date.toString().split(" ")[3] +
-                '}'
+        return
+            "{" +
+                "\"text\":\"" + text + "\"," +
+                "\"char\":" + chat.toString() +
+            "}"
         ;
     }
+
 }

@@ -1,43 +1,63 @@
 package catchme.messenger.logic;
 
-import com.orm.SugarRecord;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 
 /**
- * Created by cosmo on 10-Nov-17.
+ * Created by cosmo on 15-Nov-17.
+ * 5:06 PM
  * Author: cosmos
- */
+*/
 
-public class Account extends SugarRecord {
+public class Account {
 
-    private String login;
-    private String sessionId;
+    @SerializedName("username")
+    @Expose
+    private String username;
 
-    // TODO store session id
+    @SerializedName("password")
+    @Expose
+    private String password;
 
-    public Account() {
+    @SerializedName("email")
+    @Expose
+    private String email;
+
+    public String getUsername() {
+        return username;
     }
 
-    public Account(String login) {
-        this.login = login;
-
-        // TODO net stuff
-        // get sessionid from server
-
-
-
-        this.sessionId = "";
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    // TODO toString();
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     @Override
     public String toString() {
-        return "Account{" +
-                "login='" + login + '\'' +
-                // !!!
-                ", sessionId='" + sessionId + '\'' +
-                '}'
+        return
+            "{" +
+                "\"username\":\"" + username + "\"," +
+                "\"password\":\"" + password + "\"," +
+                "\"email\":\"" + email + "\"" +
+            "}"
         ;
     }
+
 }
 
