@@ -19,47 +19,29 @@ public class LogicTest extends AppCompatActivity {
         setContentView(R.layout.activity_logic_test);
     }
 
-    /* TODO LIST *///:
-    /*  get user's login & password
-     *  get user's name
-     *  NET stuff
-     *  VALIDATION stuff
-     *  ChatActivity class
-     *  start chat activity
-     */
     /** METHODS TO USE *///:~
     // !!! NOT RELATED TO LogicTest CLASS !!!
     // MUST BE LOGIN ACTIVITY's MEMBERS
     public void onLogin(Context context) {
 
-        // TODO get user's login & password
 
 //        Account account = new Account("DEFAULT_LOGIN");
 
 
-        // TODO NET stuff
-
-        // TODO VALIDATION stuff
-
         // SAVING TO DATABASE
 //        account.save();
 
-        // TODO ChatActivity class
 //        startActivity(new Intent(context, ChatActiviry.class));
     }
 
     public void onSignup(Context context) {
-        // TODO get user's login & password
 
         // there must be registration or smth
 
         this.onLogin(context);
-
-        // TODO KOLYA HOW TO DETECT NEW ENTRY TO DISCUSS
     }
 
     public void onLogout() {
-        // TODO NET STUFF
 
         // deleting account from device
 //        java.util.List<Account> allAccount = Account.listAll(Account.class);

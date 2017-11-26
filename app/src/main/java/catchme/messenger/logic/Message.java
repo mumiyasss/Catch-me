@@ -12,11 +12,10 @@ import com.orm.SugarRecord;
 
 public class Message extends SugarRecord {
 
-
-
     @SerializedName("text")
     @Expose
     private String text;
+
     @SerializedName("chat")
     @Expose
     private Integer chat;

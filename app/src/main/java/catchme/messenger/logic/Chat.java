@@ -17,6 +17,7 @@ public class Chat {
     @SerializedName("name")
     @Expose
     private String name;
+
     @SerializedName("members")
     @Expose
     private List<Integer> members = null;
