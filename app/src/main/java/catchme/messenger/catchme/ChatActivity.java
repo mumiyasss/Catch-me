@@ -1,4 +1,4 @@
-package catchmemessemger.itis.kpfu.ru.catchme;
+package catchme.messenger.catchme;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

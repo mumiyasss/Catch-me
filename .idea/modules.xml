@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Catch-me.iml" filepath="$PROJECT_DIR$/Catch-me.iml" />
-      <module fileurl="file://C:\Users\cosmo\AndroidStudioProjects\Catchme\Catch-me.iml" filepath="C:\Users\cosmo\AndroidStudioProjects\Catchme\Catch-me.iml" />
-      <module fileurl="file://C:\Projects\Catch-me\Catchme.iml" filepath="C:\Projects\Catch-me\Catchme.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CatchMe.iml" filepath="$PROJECT_DIR$/CatchMe.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

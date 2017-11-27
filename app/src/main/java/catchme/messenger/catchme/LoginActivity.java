@@ -1,4 +1,4 @@
-package catchmemessemger.itis.kpfu.ru.catchme;
+package catchme.messenger.catchme;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;

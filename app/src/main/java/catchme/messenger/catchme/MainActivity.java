@@ -1,4 +1,5 @@
-package catchmemessemger.itis.kpfu.ru.catchme;
+package catchme.messenger.catchme;
+
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -6,7 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import catchmemessemger.itis.kpfu.ru.logic.LogicTest;
+import catchme.messenger.logic.*;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
