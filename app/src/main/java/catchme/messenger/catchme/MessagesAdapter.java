@@ -7,12 +7,12 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-public class Adapter extends BaseAdapter {
+public class MessagesAdapter extends BaseAdapter {
 
     private Context mContext;
     private String [] messages;
 
-    public Adapter(Context context, String[] messagese) {
+    public MessagesAdapter(Context context, String[] messages) {
         mContext = context;
         this.messages = messages;
     }

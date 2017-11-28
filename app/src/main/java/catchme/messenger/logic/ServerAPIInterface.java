@@ -15,7 +15,7 @@ import java.util.List;
  * author: cosmos
  */
 
-public interface ServerApiInterface {
+public interface ServerAPIInterface {
 
     String BASE_URL = "http://ksftx.pythonanywhere.com/api/";
 
