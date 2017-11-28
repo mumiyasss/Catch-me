@@ -3,6 +3,7 @@ package catchme.messenger.logic;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 
@@ -20,29 +21,37 @@ public interface ServerApiInterface {
 
     @POST("auth/register/")
     void register(
+            @Header("Content-Type: application/json")
             Account newAccount
     );
 
-    @POST("auth/get_token")
+    @GET("auth/get_token")
     String getToken(
+            @Header("Content-Type: application/json")
             Account account
     );
 
-    @POST("lowMes/")
-    Call<List<Chat>> getChats();
+    @GET("lowMes/")
+    Call<List<Chat>> getChats(
+            @Header("Authorization: ")
+            String token // JWT eyJ0...
+    );
 
-    @POST("lowMes/messages/?chat_id={chatId}/")
+    @GET("lowMes/messages/?chat_id={chatId}/")
     Call<List<Message>> getMessages(
-            @Path("chatId") Integer chatId
+            @Path("chatId") Integer chatId,
+            @Header("Authorization: ") String token // JWT eyJ0...
     );
 
     @POST("lowMes/send_message/")
     void sendMessage(
+            @Header("Authorization: ") String token, // JWT eyJ0...
             Message message
     );
 
     @POST("lowMes/new_chat/")
     void createChat(
+            @Header("Authorization: ") String token, // JWT eyJ0...
             Chat newChat
     );
 
