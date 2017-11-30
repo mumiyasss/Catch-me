@@ -7,14 +7,10 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-<<<<<<< HEAD
-import android.view.View;
-import android.widget.EditText;
-=======
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
->>>>>>> 015cec768109893ca6189426f994b0e2bf5279f0
+import android.widget.EditText;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -59,6 +55,21 @@ public class LogicTest extends AppCompatActivity {
         service = retrofit.create(ServerApiInterface.class);
     }
 
+    public void btnPressed (View view) {
+        EditText nameField = findViewById(R.id.name);
+        String name = nameField.getText().toString();
+
+        EditText emailField = findViewById(R.id.email);
+        String email = emailField.getText().toString();
+
+        EditText passwordField = findViewById(R.id.password);
+        String pasword = passwordField.getText().toString();
+
+        EditText messageField = findViewById(R.id.message);
+        String message = messageField.getText().toString();
+
+
+    }
 
     public void refresh() {
         account.setToken(
