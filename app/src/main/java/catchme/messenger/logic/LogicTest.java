@@ -7,6 +7,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.List;
 
 import retrofit2.Response;
@@ -28,6 +31,7 @@ public class LogicTest extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_logic_test);
+
         retrofit = new Retrofit.Builder()
                 .baseUrl("http://ksftx.pythonanywhere.com/api/")
                 .build();
@@ -47,26 +51,34 @@ public class LogicTest extends AppCompatActivity {
      *///:~
     // !!! NOT RELATED TO LogicTest CLASS !!!
     // MUST BE LOGIN ACTIVITY's MEMBERS
-    public void onLogin(/*Context context*/) {
+    public void login(Account account) {
         // TODO get user data from context
-        account = new Account("NAME", "****", "a@at.com");
+        this.account = account;
 
-        String token = service.getToken(account);
+        String token = service.getToken(this.account);
         Log.d("logic", "onLogin");
         System.out.println("logic" + "onLogin");
     }
 
-    public void onSignup(/*Context context*/) {
+    public void signup(Account account) {
         // TODO get user data from context
-        account = new Account("NEW_NAME", "****", "new@at.com");
-        service.register(account);
+        this.account = account;
+        final Account newAccount = account;
 
-        this.onLogin(/*context*/);
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                service.register(newAccount);
+            }
+        });
+        thread.start();
+
+        this.login(this.account);
         Log.d("logic", "onSignup");
         System.out.println("logic" + "onSignup");
     }
 
-    public void onLogout() {
+    public void logout() {
         // TODO deside if we need it
         // deleting account from device
 //        java.util.List<Account> allAccount = Account.listAll(Account.class);
@@ -79,16 +91,24 @@ public class LogicTest extends AppCompatActivity {
     }
 
     /* METHODS RELATED TO MESSAGES *///:~
-    public void getMessages(Account account, Integer chatId) {
-        Response r;
-        try {
-            r = service.getMessages(chatId, account.getToken()).execute();
-            Log.d("logic", r.toString());
-            System.out.println("logic" + r.toString());
-        } catch (java.io.IOException e) {
-            e.printStackTrace();
-        }
+    public String getMessages(Account account, Integer chatId) throws IOException {
+        Response response
+                = service.getMessages(chatId, account.getToken()).execute();
+        return response.body().toString();
     }
+
+    public void sendMessage(final Message message) {
+        final Account account = this.account;
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                service.sendMessage(account.getToken(), message);
+            }
+        });
+        thread.start();
+    }
+
+
 
 
 }
