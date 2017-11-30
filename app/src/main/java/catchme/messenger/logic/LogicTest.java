@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
 
 import catchme.messenger.catchme.R;
 
@@ -19,6 +21,21 @@ public class LogicTest extends AppCompatActivity {
         setContentView(R.layout.activity_logic_test);
     }
 
+    public void btnPressed (View view) {
+        EditText nameField = findViewById(R.id.name);
+        String name = nameField.getText().toString();
+
+        EditText emailField = findViewById(R.id.email);
+        String email = emailField.getText().toString();
+
+        EditText passwordField = findViewById(R.id.password);
+        String pasword = passwordField.getText().toString();
+
+        EditText messageField = findViewById(R.id.message);
+        String message = messageField.getText().toString();
+
+
+    }
     /** METHODS TO USE *///:~
     // !!! NOT RELATED TO LogicTest CLASS !!!
     // MUST BE LOGIN ACTIVITY's MEMBERS
