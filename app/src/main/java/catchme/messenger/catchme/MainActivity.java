@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.dima:
-                Intent logicIntentMain = new Intent(this, LogicTest.class);
+                Intent logicIntentMain = new Intent(this, catchme.messenger.catchme.LogicTest.class);
                 startActivity(logicIntentMain);
                 break;
             case R.id.lesya:
