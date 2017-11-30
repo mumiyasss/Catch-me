@@ -16,4 +16,5 @@
         completions."
     </string>
     <string name="title_activity_signin">Sign in</string>
+    <string name="title_activity_logit_test">LogitTest</string>
 </resources>
