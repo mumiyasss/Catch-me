@@ -3,9 +3,13 @@ package catchme.messenger.logic;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.View;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -27,10 +31,22 @@ public class LogicTest extends AppCompatActivity {
 
     Account account;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_logic_test);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });
 
         retrofit = new Retrofit.Builder()
                 .baseUrl("http://ksftx.pythonanywhere.com/api/")
@@ -49,9 +65,9 @@ public class LogicTest extends AppCompatActivity {
     /**
      * METHODS TO USE
      *///:~
-    // !!! NOT RELATED TO LogicTest CLASS !!!
+    // !!! NOT RELATED TO logic.LogicTest CLASS !!!
     // MUST BE LOGIN ACTIVITY's MEMBERS
-    public void login(Account account) {
+    public void login() {
         // TODO get user data from context
         this.account = account;
 
@@ -60,20 +76,17 @@ public class LogicTest extends AppCompatActivity {
         System.out.println("logic" + "onLogin");
     }
 
-    public void signup(Account account) {
+    public void signup() {
         // TODO get user data from context
-        this.account = account;
-        final Account newAccount = account;
-
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
-                service.register(newAccount);
+                service.register();
             }
         });
         thread.start();
 
-        this.login(this.account);
+        this.login(account);
         Log.d("logic", "onSignup");
         System.out.println("logic" + "onSignup");
     }
@@ -91,7 +104,7 @@ public class LogicTest extends AppCompatActivity {
     }
 
     /* METHODS RELATED TO MESSAGES *///:~
-    public String getMessages(Account account, Integer chatId) throws IOException {
+    public String getMessages(Integer chatId) throws IOException {
         Response response
                 = service.getMessages(chatId, account.getToken()).execute();
         return response.body().toString();
