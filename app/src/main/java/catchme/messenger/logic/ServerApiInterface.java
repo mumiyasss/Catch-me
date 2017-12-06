@@ -25,7 +25,7 @@ public interface ServerApiInterface {
             Account newAccount
     );
 
-    @GET("auth/get_token")
+    @GET("auth/get_token/")
     String getToken(
             @Header("Content-Type: application/json")
             Account account

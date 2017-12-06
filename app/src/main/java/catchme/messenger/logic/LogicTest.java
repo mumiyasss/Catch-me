@@ -27,30 +27,18 @@ import catchme.messenger.catchme.R;
 public class LogicTest extends AppCompatActivity {
 
     Retrofit retrofit;
-
     ServerApiInterface service;
-
     Account account;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_logic_test);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
 
         retrofit = new Retrofit.Builder()
-                .baseUrl("http://ksftx.pythonanywhere.com/api/")
+                .baseUrl("http://ksftx.pythonanywhere.com/")
                 .build();
         service = retrofit.create(ServerApiInterface.class);
     }
@@ -67,8 +55,6 @@ public class LogicTest extends AppCompatActivity {
 
         EditText messageField = findViewById(R.id.message);
         String message = messageField.getText().toString();
-
-
     }
 
     public void refresh() {
@@ -84,38 +70,39 @@ public class LogicTest extends AppCompatActivity {
      *///:~
     // !!! NOT RELATED TO logic.LogicTest CLASS !!!
     // MUST BE LOGIN ACTIVITY's MEMBERS
-    public void login() {
-        // TODO get user data from context
-        this.account = account;
+    public void login(View view) {
+        this.account = new Account(
+                ((EditText) findViewById(R.id.name)).getText().toString(),
+                ((EditText) findViewById(R.id.password)).getText().toString()
+//                ((EditText) findViewById(R.id.email)).getText().toString()
+        );
 
         String token = service.getToken(this.account);
         Log.d("logic", "onLogin");
         System.out.println("logic" + "onLogin");
     }
 
-    public void signup() {
-        // TODO get user data from context
+    public void signup(View view) {
+        this.account = new Account(
+                ((EditText) findViewById(R.id.name)).getText().toString(),
+                ((EditText) findViewById(R.id.password)).getText().toString()
+//                ((EditText) findViewById(R.id.email)).getText().toString()
+        );
+
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
-                service.register();
+                service.register(account);
             }
         });
         thread.start();
 
-        this.login(account);
+        this.login(view);
         Log.d("logic", "onSignup");
         System.out.println("logic" + "onSignup");
     }
 
-    public void logout() {
-        // TODO deside if we need it
-        // deleting account from device
-//        java.util.List<Account> allAccount = Account.listAll(Account.class);
-//        Account.deleteAll(Account.class);
-        // clearing messages cache
-//        java.util.List<Message> messagesCache = Message.listAll(Message.class);
-//        Message.deleteAll(Message.class);
+    public void logout(View view) {
         Log.d("logic", "onLogout");
         System.out.println("logic" + "logout");
     }

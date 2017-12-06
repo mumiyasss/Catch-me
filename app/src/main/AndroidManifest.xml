@@ -44,7 +44,7 @@
             android:label="@string/title_activity_login" />
         <activity android:name=".ChatActivity" />
         <activity
-            android:name=".LogicTest"
+            android:name="catchme.messenger.logic.LogicTest"
             android:label="@string/title_activity_logit_test"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
