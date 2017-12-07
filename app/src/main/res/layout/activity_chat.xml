@@ -47,4 +47,5 @@
             android:onClick="send"
             android:text="Send" />
     </RelativeLayout>
+
 </android.support.constraint.ConstraintLayout>
