@@ -10,7 +10,8 @@ import android.widget.EditText;
 import android.widget.ListView;
 
 public class ChatActivity extends AppCompatActivity {
-    static String [] messages = new String[100];
+    static String [] messages = new String[10];
+    static String [] users = new String[10];
     static int size = 0;
 
     @Override
@@ -18,9 +19,11 @@ public class ChatActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
         messages[0] = "hello";
+        users[0] = "Kolyan";
         messages[1] = "its meee";
+        users[1] = "Dimon";
         size += 2;
-        MessagesAdapter adapter = new MessagesAdapter(this, messages);
+        MessagesAdapter adapter = new MessagesAdapter(this, users, messages);
         ListView lv = (ListView) findViewById(R.id.chatListView);
         lv.setAdapter(adapter);
 
@@ -42,6 +45,7 @@ public class ChatActivity extends AppCompatActivity {
         EditText messageField = findViewById(R.id.messageField);
         String s = messageField.getText().toString();
         messages[size] = s;
+        users[size] = "me";
         messageField.setText("");
         size++;
     }
