@@ -20,6 +20,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class STUDY extends AppCompatActivity {
     Retrofit retrofit;
     ServerApiInterface service;
+    List<Chat> chats;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +35,6 @@ public class STUDY extends AppCompatActivity {
                 .build();
         service = retrofit.create(ServerApiInterface.class);
 
-        List<Chat> chats;
         chats = new ArrayList<>();
 
 
