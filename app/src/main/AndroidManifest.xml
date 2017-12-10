@@ -47,7 +47,8 @@
             android:name="catchme.messenger.logic.LogicTest"
             android:label="@string/title_activity_logit_test"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".ChatMenuActivity"></activity>
+        <activity android:name=".ChatMenuActivity" />
+        <activity android:name="catchme.messenger.logic.STUDY"></activity>
     </application>
 
 </manifest>

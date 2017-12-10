@@ -20,7 +20,7 @@ public class Chat {
 
     @SerializedName("members")
     @Expose
-    private List<Integer> members = null;
+    private List<Integer> members;
 
     public String getName() {
         return name;
