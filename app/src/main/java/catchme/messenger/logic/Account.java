@@ -25,7 +25,7 @@ public class Account {
     private String email;*/
 
 
-    private String token;
+    private Token token;
 
     public Account() {}
 
@@ -60,19 +60,19 @@ public class Account {
     }*/
 
     public String getToken() {
-        return token;
+        return token.getToken();
     }
 
     public void setToken(String token) {
-        this.token = token;
+        this.token.setToken(token);
     }
 
     @Override
     public String toString() {
         return "Account{" +
                 "username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", token='" + token + '\'' +
+//                ", password='" + password + '\'' +
+//                ", token='" + token + '\'' +
                 '}'
         ;
     }

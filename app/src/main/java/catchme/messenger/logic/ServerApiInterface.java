@@ -1,7 +1,10 @@
 package catchme.messenger.logic;
 
 
+import android.support.v4.media.AudioAttributesCompat;
+
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
@@ -17,10 +20,10 @@ import java.util.List;
 
 public interface ServerApiInterface {
 
-    @GET("auth/get_token/")
-    Call<String> getToken(
-            @Header("Content-Type:application/json")
-            Account account
+    @GET("api/auth/get_token/")
+    Call<Token> getToken(
+            @Header("Content-Type") String contentType,
+            @Body Account account
     );
 
     @GET("lowMes/")
@@ -31,7 +34,6 @@ public interface ServerApiInterface {
             @Path("chatId") Integer chatId,
             @Header("Authorization: ") String token // JWT eyJ0...
     );
-
 }
 
 

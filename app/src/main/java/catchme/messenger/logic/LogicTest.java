@@ -62,21 +62,21 @@ public class LogicTest extends AppCompatActivity {
                 ((EditText) findViewById(R.id.password)).getText().toString()
         );
         Log.d("method call", "getAccount");
-        getToken();
-        Log.d("method call", "getToken");
+//        getToken();
+//        Log.d("method call", "getToken");
     }
 
     void getToken() {
-         service.getToken(account).enqueue(new Callback<String>() {
+         service.getToken("application/json", account).enqueue(new Callback<Token>() {
             @Override
-            public void onResponse(Call<String> call, Response<String> response) {
+            public void onResponse(Call<Token> call, Response<Token> response) {
                 Toast.makeText(LogicTest.this, "We have a response", Toast.LENGTH_LONG).show();
                 account.setToken(response.toString());
                 Log.d("Response", account.toString());
             }
 
             @Override
-            public void onFailure(Call<String> call, Throwable t) {
+            public void onFailure(Call<Token> call, Throwable t) {
                 Toast.makeText(LogicTest.this, "We've got a problem", Toast.LENGTH_LONG).show();
                 Log.d("Exception", t.toString());
             }
