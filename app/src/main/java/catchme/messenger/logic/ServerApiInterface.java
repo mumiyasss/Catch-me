@@ -18,13 +18,19 @@ import java.util.List;
 public interface ServerApiInterface {
 
     @GET("auth/get_token/")
-    String getToken(
-            @Header("Content-Type: application/json")
+    Call<String> getToken(
+            @Header("Content-Type:application/json")
             Account account
     );
 
     @GET("lowMes/")
     Call<List<Chat>> getChats();
+
+    @GET("lowMes/messages/?chat_id={chatId}/")
+    Call<List<Message>> getMessages(
+            @Path("chatId") Integer chatId,
+            @Header("Authorization: ") String token // JWT eyJ0...
+    );
 
 }
 
