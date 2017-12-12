@@ -39,6 +39,16 @@ public class API {
         getToken(name, password);
     }
 
+    public API(String token) {
+        retrofit = new Retrofit.Builder()
+                .baseUrl("http://ksftx.pythonanywhere.com/api/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        service = retrofit.create(ServerApiInterface.class);
+
+        this.token = new Token(token);
+    }
+
     void getToken(String name, String password) {
         Account account = new Account(name, password);
 
