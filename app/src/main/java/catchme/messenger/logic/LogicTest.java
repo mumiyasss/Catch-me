@@ -1,57 +1,55 @@
 package catchme.messenger.logic;
 
-
-import android.content.Context;
-import android.content.Intent;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.List;
 
+import catchme.messenger.catchme.R;
+import catchme.messenger.logic.models.Account;
+import catchme.messenger.logic.models.Chat;
+import catchme.messenger.logic.models.Token;
 import retrofit2.Call;
+import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
-import catchme.messenger.catchme.R;
+public class LogicTest extends AppCompatActivity implements View.OnClickListener {
 
-
-// TEMPORARILY CLASS
-public class LogicTest extends AppCompatActivity {
-
-    Retrofit retrofit;
-    ServerApiInterface service;
-    Account account;
+    Button getTok, getChats;
+    API api;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_logic_test);
 
-        retrofit = new Retrofit.Builder()
-                .baseUrl("http://ksftx.pythonanywhere.com/")
-                .build();
-        service = retrofit.create(ServerApiInterface.class);
-        //List<Chat> chat = service.getChats();
-        //Log.d("CHAT", chat.toString());
+        getTok = findViewById(R.id.getTok);
+        getChats = findViewById(R.id.getChats);
+        getTok.setOnClickListener(this);
+        getChats.setOnClickListener(this);
     }
-/*
-    public void login(View view) {
-        this.account = new Account(
-                ((EditText) findViewById(R.id.name)).getText().toString(),
-                ((EditText) findViewById(R.id.password)).getText().toString()
-        );
 
-        String token = service.getToken(this.account).toString();
-        Log.d("logic", "onLogin");
-        System.out.println("logic" + "onLogin");
-    }*/
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.getTok:
+                String name = ((EditText) findViewById(R.id.name)).getText().toString();
+                String password = ((EditText) findViewById(R.id.password)).getText().toString();
+                api = new API(name, password);
+                break;
+            case R.id.getChats:
+                api.getChatList();
+                //api.getChatMessages(1);
+                break;
+        }
+    }
+
+
 }

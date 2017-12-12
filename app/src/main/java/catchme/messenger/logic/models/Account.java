@@ -1,4 +1,4 @@
-package catchme.messenger.logic;
+package catchme.messenger.logic.models;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -24,8 +24,6 @@ public class Account {
     @Expose
     private String email;*/
 
-
-    private String token;
 
     public Account() {}
 
@@ -59,24 +57,14 @@ public class Account {
         this.email = email;
     }*/
 
-    public String getToken() {
-        return token;
-    }
-
-    public void setToken(String token) {
-        this.token = token;
-    }
-
     @Override
     public String toString() {
-        return
-            "{" +
-                "\"username\":\"" + username + "\"," +
-                "\"password\":\"" + password + "\"," +
-//                "\"email\":\"" + email + "\"" +
-            "}"
+        return "Account{" +
+                "username='" + username + '\'' +
+//                ", password='" + password + '\'' +
+//                ", token='" + token + '\'' +
+                '}'
         ;
     }
-
 }
 

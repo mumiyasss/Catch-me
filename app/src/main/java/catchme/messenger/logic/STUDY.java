@@ -5,12 +5,11 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import catchme.messenger.catchme.MainActivity;
 import catchme.messenger.catchme.R;
+import catchme.messenger.logic.models.Chat;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -21,8 +20,6 @@ public class STUDY extends AppCompatActivity {
     Retrofit retrofit;
     ServerApiInterface service;
     List<Chat> chats;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +34,6 @@ public class STUDY extends AppCompatActivity {
 
         chats = new ArrayList<>();
 
-
         // Ассинхронный запрос
         service.getChats().enqueue(new Callback<List<Chat>>() {
             @Override
@@ -50,8 +46,10 @@ public class STUDY extends AppCompatActivity {
             @Override
             public void onFailure(Call<List<Chat>> call, Throwable t) {
                 Toast.makeText(STUDY.this, "Failure", Toast.LENGTH_LONG).show();
+                Log.d("Exception", t.toString());
             }
-
         });
+
+
     }
 }

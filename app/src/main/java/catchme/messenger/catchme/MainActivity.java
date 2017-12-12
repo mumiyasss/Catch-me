@@ -11,7 +11,7 @@ import catchme.messenger.logic.*;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    Button dima, lesya;
+    Button dima, lesya, logicButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,7 +20,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         dima = findViewById(R.id.dima);
         lesya = findViewById(R.id.lesya);
+        logicButton = findViewById(R.id.logic);
 
+
+        logicButton.setOnClickListener(this);
         dima.setOnClickListener(this);
         lesya.setOnClickListener(this);
     }
@@ -28,6 +31,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public void onClick(View view) {
         switch (view.getId()) {
+            case R.id.logic:
+                Intent logicIntent = new Intent(this, catchme.messenger.logic.LogicTest.class);
+                startActivity(logicIntent);
+                break;
             case R.id.dima:
                 Intent logicIntentMain = new Intent(this, catchme.messenger.logic.STUDY.class);
                 startActivity(logicIntentMain);
