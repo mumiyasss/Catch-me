@@ -29,6 +29,14 @@ public interface ServerApiInterface {
             @Body Account account
     );
 
+    /*
+    @POST("auth/register/")
+    Call<Account> register(
+            @Header("Content-Type") String contentType,
+            @Body Account account
+    );
+    */
+
     @GET("lowMes/")
     Call<List<Chat>> getChats();
 
@@ -37,6 +45,8 @@ public interface ServerApiInterface {
             @Query("chatId") Integer chatId,
             @Header("Authorization") String token // JWT eyJ0...
     );
+
+
 }
 
 

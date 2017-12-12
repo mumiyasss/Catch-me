@@ -56,14 +56,17 @@ public class API {
             @Override
             public void onResponse(Call<Token> call, Response<Token> response) {
                 token = response.body();
-                Log.d("Response", token.toString());
+                Log.d("Response", response.body().toString());
             }
 
             @Override
             public void onFailure(Call<Token> call, Throwable t) {
                 Log.d("Exception", t.toString());
+                t.printStackTrace();
             }
         });
+
+//        Log.d("Token", token.toString()); // тут nullPrtExc
     }
 
     List<Chat> getChatList() {
@@ -86,10 +89,11 @@ public class API {
         return chats;
     }
 
+    List<Message> messages;
     List<Message> getChatMessages(Integer chatId) {
-        final List<Message> messages = new ArrayList<>();
+        messages = new ArrayList<>();
 
-        service.getMessages(chatId, token.getToken()).enqueue(new Callback<List<Message>>() {
+        service.getMessages(chatId, "JWT " + token.getToken()).enqueue(new Callback<List<Message>>() {
             @Override
             public void onResponse(Call<List<Message>> call, Response<List<Message>> response) {
                 messages.addAll(response.body());
@@ -100,9 +104,11 @@ public class API {
             public void onFailure(Call<List<Message>> call, Throwable t) {
                 Log.d("Exception", t.toString());
             }
+
         });
+
+        Log.d("Log", "getChatMessages() successful call");
 
         return messages;
     }
-
 }
