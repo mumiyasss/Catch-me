@@ -29,6 +29,8 @@ public class ChatActivity extends AppCompatActivity {
 
     }
 
+
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.chat_menu, menu);
@@ -48,6 +50,9 @@ public class ChatActivity extends AppCompatActivity {
         users[size] = "me";
         messageField.setText("");
         size++;
+        MessagesAdapter adapter = new MessagesAdapter(this, users, messages);
+        ListView lv = (ListView) findViewById(R.id.chatListView);
+        lv.setAdapter(adapter);
     }
 
 
