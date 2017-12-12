@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -17,11 +18,13 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class LogicTest extends AppCompatActivity {
+public class LogicTest extends AppCompatActivity implements View.OnClickListener {
 
     Retrofit retrofit;
     ServerApiInterface service;
     Account account;
+    Token token;
+    Button btn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,11 +32,26 @@ public class LogicTest extends AppCompatActivity {
         setContentView(R.layout.activity_logic_test);
 
         retrofit = new Retrofit.Builder()
-                .baseUrl("http://ksftx.pythonanywhere.com/")
+                .baseUrl("http://ksftx.pythonanywhere.com/api/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         service = retrofit.create(ServerApiInterface.class);
+
+        btn = findViewById(R.id.getTok);
+        btn.setOnClickListener(this);
+
     }
+
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.getTok:
+                    Log.d("OnClick", "Ok");
+                    getAccount();
+                    getToken();
+                break;
+        }
+    }
+
 
     List<Chat> getChatList() {
         final List<Chat> chats = new ArrayList<>();
@@ -56,14 +74,12 @@ public class LogicTest extends AppCompatActivity {
         return chats;
     }
 
-    public void getAccount(View view) {
+    public void getAccount() {
         this.account = new Account(
                 ((EditText) findViewById(R.id.name)).getText().toString(),
                 ((EditText) findViewById(R.id.password)).getText().toString()
         );
         Log.d("method call", "getAccount");
-//        getToken();
-//        Log.d("method call", "getToken");
     }
 
     void getToken() {
@@ -71,8 +87,9 @@ public class LogicTest extends AppCompatActivity {
             @Override
             public void onResponse(Call<Token> call, Response<Token> response) {
                 Toast.makeText(LogicTest.this, "We have a response", Toast.LENGTH_LONG).show();
-                account.setToken(response.toString());
-                Log.d("Response", account.toString());
+                token = response.body();
+                //Log.d("Response", account.getToken());
+                Log.d("Response", token.toString());
             }
 
             @Override
@@ -83,7 +100,7 @@ public class LogicTest extends AppCompatActivity {
         });
     }
 
-    List<Message> getChat(Integer chatId) {
+    /*List<Message> getChat(Integer chatId) {
         final List<Message> messages = new ArrayList<>();
 
         service.getMessages(chatId, account.getToken()).enqueue(new Callback<List<Message>>() {
@@ -102,6 +119,6 @@ public class LogicTest extends AppCompatActivity {
         });
 
         return messages;
-    }
+    }*/
 
 }

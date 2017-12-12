@@ -20,7 +20,7 @@ import java.util.List;
 
 public interface ServerApiInterface {
 
-    @GET("api/auth/get_token/")
+    @POST("auth/get_token/")
     Call<Token> getToken(
             @Header("Content-Type") String contentType,
             @Body Account account
