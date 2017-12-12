@@ -41,7 +41,7 @@ public class Message extends SugarRecord {
         return
             "{" +
                 "\"text\":\"" + text + "\"," +
-                "\"char\":" + chat.toString() +
+                "\"chat\":" + chat.toString() +
             "}"
         ;
     }
