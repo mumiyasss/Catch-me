@@ -1,4 +1,4 @@
-package catchme.messenger.logic;
+package catchme.messenger.logic.models;
 
 import java.util.List;
 import com.google.gson.annotations.Expose;
@@ -22,6 +22,18 @@ public class Chat {
     @Expose
     private List<Integer> members;
 
+    @SerializedName("id")
+    @Expose
+    private Integer id;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     public String getName() {
         return name;
     }
@@ -40,12 +52,10 @@ public class Chat {
 
     @Override
     public String toString() {
-        return
-            "{" +
-                "\"name\":\"" + name + "\"," +
-                "\"members\":" + members.toString() +
-            "}"
-        ;
+        return "Chat{" +
+                "name='" + name + '\'' +
+                ", members=" + members +
+                ", id=" + id +
+                '}';
     }
-
 }

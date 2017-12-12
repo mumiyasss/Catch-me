@@ -5,12 +5,11 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import catchme.messenger.catchme.MainActivity;
 import catchme.messenger.catchme.R;
+import catchme.messenger.logic.models.Chat;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
