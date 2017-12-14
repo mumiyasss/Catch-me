@@ -6,6 +6,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,25 +50,39 @@ public class API {
         this.token = new Token(token);
     }
 
+    void showToken() {
+        Log.d("IN MAIN Thread", token.toString());
+
+    }
+
     void getToken(String name, String password) {
-        Account account = new Account(name, password);
+        final Account account = new Account(name, password);
 
-        service.getToken("application/json", account).enqueue(new Callback<Token>() {
+        Thread th = new Thread(new Runnable() {
             @Override
-            public void onResponse(Call<Token> call, Response<Token> response) {
-                token = response.body();
-                Log.d("Response", response.body().toString());
-            }
-
-            @Override
-            public void onFailure(Call<Token> call, Throwable t) {
-                Log.d("Exception", t.toString());
-                t.printStackTrace();
+            public void run() {
+                try {
+                    Response<Token> response = service.getToken("application/json", account).execute();
+                    token = new Token(response.body().getToken());
+                    Log.d("Response", token.toString());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
-//        Log.d("Token", token.toString()); // тут nullPrtExc
+        th.setName("Get token thread");
+        th.start();
+
+        try {
+            th.join();
+        } catch (InterruptedException e) {
+            throw new RuntimeException("Thread " + th.getName() + " interrupted!");
+        }
+
+        showToken();
     }
+
 
     List<Chat> getChatList() {
         final List<Chat> chats = new ArrayList<>();
@@ -90,11 +105,13 @@ public class API {
     }
 
     List<Message> messages;
+
     List<Message> getChatMessages(Integer chatId) {
         messages = new ArrayList<>();
 
         service.getMessages(chatId, "JWT " + token.getToken()).enqueue(new Callback<List<Message>>() {
             @Override
+
             public void onResponse(Call<List<Message>> call, Response<List<Message>> response) {
                 messages.addAll(response.body());
                 Log.d("Response", messages.toString());

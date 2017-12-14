@@ -31,10 +31,10 @@ public class LogicTest extends AppCompatActivity implements View.OnClickListener
                 String name = ((EditText) findViewById(R.id.name)).getText().toString();
                 String password = ((EditText) findViewById(R.id.password)).getText().toString();
                 api = new API(name, password);
+
                 break;
             case R.id.getChats:
-                api.getChatList();
-                api.getChatMessages(1);
+                api.showToken();
                 break;
         }
     }
