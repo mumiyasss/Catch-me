@@ -52,8 +52,11 @@ public class API {
 
     void showToken() {
         Log.d("IN MAIN Thread", token.toString());
-
     }
+    void showChats() {
+        Log.d("IN MAIN Thread", chats.toString());
+    }
+
 
     void getToken(String name, String password) {
         final Account account = new Account(name, password);
@@ -70,19 +73,63 @@ public class API {
                 }
             }
         });
-
         th.setName("Get token thread");
         th.start();
-
         try {
             th.join();
         } catch (InterruptedException e) {
             throw new RuntimeException("Thread " + th.getName() + " interrupted!");
         }
-
-        showToken();
     }
 
+    List<Chat> chats = new ArrayList<>();
+    List<Chat> getSyncChatList() {
+        Thread th = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Response<List<Chat>> response = service.getChats().execute();
+                    chats = response.body();
+                    Log.d("Response", chats.toString());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        th.setName("Get Chat List");
+        th.start();
+        try {
+            th.join();
+        } catch (InterruptedException e) {
+            throw new RuntimeException("Thread " + th.getName() + " interrupted!");
+        }
+        return chats;
+    }
+
+    List<Message> messages;
+    void getSyncMessages(final Integer chatId ) {
+        Thread th = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Response<List<Message>> response = service.getMessages(chatId, token.getToken()).execute();
+                    Log.d("RES", response.toString());
+                    //messages.addAll(response.body());
+                    //Log.d("Response", messages.toString());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        th.setName("Get messages List");
+        th.start();
+        try {
+            th.join();
+        } catch (InterruptedException e) {
+            throw new RuntimeException("Thread " + th.getName() + " interrupted!");
+        }
+        Log.d("IN MAIN Thread", messages.toString());
+    }
 
     List<Chat> getChatList() {
         final List<Chat> chats = new ArrayList<>();
@@ -104,12 +151,10 @@ public class API {
         return chats;
     }
 
-    List<Message> messages;
-
     List<Message> getChatMessages(Integer chatId) {
         messages = new ArrayList<>();
 
-        service.getMessages(chatId, "JWT " + token.getToken()).enqueue(new Callback<List<Message>>() {
+        service.getMessages(chatId, token.getToken()).enqueue(new Callback<List<Message>>() {
             @Override
 
             public void onResponse(Call<List<Message>> call, Response<List<Message>> response) {

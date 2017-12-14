@@ -33,6 +33,8 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import catchme.messenger.logic.*;
+
 import static android.Manifest.permission.READ_CONTACTS;
 
 /**
@@ -88,6 +90,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             @Override
             public void onClick(View view) {
                 attemptLogin();
+                String name = ((AutoCompleteTextView) findViewById(R.id.email)).getText().toString();
+                String password = ((EditText) findViewById(R.id.password)).getText().toString();
+                API api = new API(name, password);
                 Intent intent = new Intent(LoginActivity.this, ChatListActivity.class);
                 startActivity(intent);
             }
@@ -95,6 +100,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
+
+
     }
 
     private void populateAutoComplete() {
@@ -195,7 +202,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
     private boolean isEmailValid(String email) {
         //TODO: Replace this with your own logic
-        return email.contains("@");
+        return email.length() > 2;
     }
 
     private boolean isPasswordValid(String password) {
