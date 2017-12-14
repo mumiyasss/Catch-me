@@ -7,14 +7,17 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 public class MessagesAdapter extends BaseAdapter {
 
     private Context mContext;
-    private String [] messages;
-    private String [] users;
+    private ArrayList<String> messages = new ArrayList<>();
+    private ArrayList<String> users = new ArrayList<>();
     private int k = 0;
 
-    public MessagesAdapter(Context context, String[] messages, String[] users) {
+    public MessagesAdapter(Context context, ArrayList<String> messages, ArrayList <String> users) {
         mContext = context;
         this.users = users;
         this.messages = messages;
@@ -27,18 +30,18 @@ public class MessagesAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return messages.length;
+        return messages.size();
     }
 
     @Override
     public String getItem(int i) {
         if (k % 2 == 0) {
             k++;
-            return messages[i];
+            return messages.get(i);
         }
         else{
             k++;
-            return users[i];
+            return users.get(i);
         }
     }
 
