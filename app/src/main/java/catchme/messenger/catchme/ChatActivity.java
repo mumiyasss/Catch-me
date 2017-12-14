@@ -9,20 +9,21 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ListView;
 
+import java.util.ArrayList;
+
 public class ChatActivity extends AppCompatActivity {
-    static String [] messages = new String[10];
-    static String [] users = new String[10];
-    static int size = 0;
+    static ArrayList<String> messages = new ArrayList<>();
+    static ArrayList<String> users = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
-        messages[0] = "hello";
-        users[0] = "Kolyan";
-        messages[1] = "its meee";
-        users[1] = "Dimon";
-        size += 2;
+
+        //messages.add("hello");
+        //users.add("Kolyan");
+        //messages.add("its meee");
+        //users.add("Dimon");
         MessagesAdapter adapter = new MessagesAdapter(this, users, messages);
         ListView lv = (ListView) findViewById(R.id.chatListView);
         lv.setAdapter(adapter);
@@ -45,14 +46,16 @@ public class ChatActivity extends AppCompatActivity {
 
     public void send(View view) {
         EditText messageField = findViewById(R.id.messageField);
-        String s = messageField.getText().toString();
-        messages[size] = s;
-        users[size] = "me";
-        messageField.setText("");
-        size++;
-        MessagesAdapter adapter = new MessagesAdapter(this, users, messages);
-        ListView lv = (ListView) findViewById(R.id.chatListView);
-        lv.setAdapter(adapter);
+        String s = messageField.getText().toString().trim();
+
+        if (!s.equals("")) {
+            messages.add(s);
+            users.add("me");
+            messageField.setText("");
+            MessagesAdapter adapter = new MessagesAdapter(this, users, messages);
+            ListView lv = (ListView) findViewById(R.id.chatListView);
+            lv.setAdapter(adapter);
+        }
     }
 
 
