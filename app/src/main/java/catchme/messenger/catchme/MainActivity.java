@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
         } catch (Exception e) {
             intent = new Intent(this, LoginActivity.class);
         }
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
         setContentView(R.layout.activity_main);
     }
@@ -44,7 +45,9 @@ public class MainActivity extends AppCompatActivity {
         try {
             Token.findById(Token.class, 1)
                     .save();
-        } catch (Exception e) {}
+        } catch (Exception e) {
+            Log.d("Exception","Exception caught onDestroy()@MainActivity");
+        }
         SugarContext.terminate();
     }
 }
