@@ -42,10 +42,17 @@ public interface ServerApiInterface {
 
     @GET("lowMes/messages/")
     Call<List<Message>> getMessages(
-            @Query("chatId") Integer chatId,
+            @Query("chat_id") Integer chatId,
             @Header("Authorization") String token // JWT eyJ0...
     );
 
+    @POST("lowMes/{chat_id}/send_message/")
+    void sendMessage(
+            @Path("chat_id") Integer chatId,
+            @Header("Authorization") String token,
+            @Body Message message
+
+    );
 
 }
 

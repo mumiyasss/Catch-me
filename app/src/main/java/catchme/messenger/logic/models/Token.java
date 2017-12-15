@@ -6,20 +6,19 @@ import com.orm.SugarRecord;
 
 public class Token extends SugarRecord {
 
-    public void setToken(String token) {
-        this.token = token;
-    }
-
     @SerializedName("token")
     @Expose
     private String token;
 
     public Token(String token) {
-        this.token = token;
+        this.token = "JWT " + token;
     }
 
+<<<<<<< HEAD
     public Token() {}
 
+=======
+>>>>>>> 8c8bc3ee7622039134030a0c17c451b7d88142de
     public String getToken() {
         return token;
     }
