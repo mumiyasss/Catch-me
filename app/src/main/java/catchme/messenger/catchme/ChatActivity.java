@@ -106,9 +106,7 @@ public class ChatActivity extends AppCompatActivity {
 
         if (!s.equals("")) {
             api.sendMessage(CHAT_ID, s);
-//            messages.add(s);
-//            users.add("me");
-              messageField.setText("");
+            messageField.setText("");
             MessagesAdapter adapter = new MessagesAdapter(this, newMessages);
             ListView lv = (ListView) findViewById(R.id.chatListView);
             lv.setAdapter(adapter);
