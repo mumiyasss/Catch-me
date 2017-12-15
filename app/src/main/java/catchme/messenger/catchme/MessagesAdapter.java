@@ -52,7 +52,7 @@ public class MessagesAdapter extends BaseAdapter {
 
     @Override
     public String getItem(int i) {
-        if (k % 2 == 0) {
+        if (k % 2 != 0) {
             k++;
             return messages.get(i);
         }
