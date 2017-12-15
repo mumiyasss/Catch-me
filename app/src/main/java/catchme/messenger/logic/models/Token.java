@@ -16,6 +16,10 @@ public class Token extends SugarRecord {
 
     public Token() {}
 
+    public Token(String token, int i) {
+        this.token = token;
+    }
+
     public String getToken() {
         return token;
     }

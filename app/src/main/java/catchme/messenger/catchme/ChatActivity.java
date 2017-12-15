@@ -2,6 +2,7 @@ package catchme.messenger.catchme;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -35,6 +36,7 @@ public class ChatActivity extends AppCompatActivity {
 
 
     API api = new API(token);
+    //API api;
 
     Intent intent = getIntent();
     int CHAT_ID ;
@@ -45,6 +47,10 @@ public class ChatActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         CHAT_ID  = intent.getIntExtra("chat_id", 1);
+
+//        SharedPreferences sPref = getPreferences(MODE_PRIVATE);
+//        String tokenPr = sPref.getString("TOKEN", "");
+//        api = new API(tokenPr, 1);
 
         //messages.add("hello");
         //users.add("Kolyan");

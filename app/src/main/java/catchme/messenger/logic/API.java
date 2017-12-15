@@ -32,7 +32,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class API {
     Retrofit retrofit;
     ServerApiInterface service;
-    Token token;
+    public Token token;
 
     public Token getToken() {
         return token;
@@ -54,6 +54,10 @@ public class API {
     public API(String token) {
         this();
         this.token = new Token(token);
+    }
+    public API(String token, int i) {
+        this();
+        this.token = new Token(token, i);
     }
 
     void logToken() {

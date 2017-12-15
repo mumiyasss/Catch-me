@@ -23,13 +23,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
 
-        SugarContext.init(this);
+       // SugarContext.init(this);
 
         Intent intent;
         //try {
             //Token token = Token.first(Token.class);
             //Log.d("TokenLog", "Token is in db: " + token.toString());
-            intent = new Intent(this, ChatListActivity.class);
+            intent = new Intent(this, LoginActivity.class);
         //} catch (Exception e) {
             //Log.d("TokenLog", "Token not found (in db).");
           //  intent = new Intent(this, LoginActivity.class);
