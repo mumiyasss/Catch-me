@@ -20,11 +20,6 @@ public class MessagesAdapter extends BaseAdapter {
     private List<String> users = new ArrayList<>();
     private int k = 0;
 
-    public MessagesAdapter(Context context, List<String> messages, List <String> users) {
-        mContext = context;
-        this.users = users;
-        this.messages = messages;
-    }
 
     public MessagesAdapter(Context context, List<Message> messages) {
         mContext = context;
