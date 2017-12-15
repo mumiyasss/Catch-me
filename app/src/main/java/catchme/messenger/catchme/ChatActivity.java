@@ -3,6 +3,7 @@ package catchme.messenger.catchme;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -10,10 +11,18 @@ import android.widget.EditText;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import catchme.messenger.logic.API;
+import catchme.messenger.logic.models.Message;
+
+import static java.lang.Thread.sleep;
 
 public class ChatActivity extends AppCompatActivity {
-    static ArrayList<String> messages = new ArrayList<>();
-    static ArrayList<String> users = new ArrayList<>();
+    static List<String> messages = new ArrayList<>();
+    static List<String> users = new ArrayList<>();
+    List<Message> newMessages = new ArrayList<>();
+    MessagesAdapter adapter = new MessagesAdapter(this, users, messages);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,12 +33,33 @@ public class ChatActivity extends AppCompatActivity {
         //users.add("Kolyan");
         //messages.add("its meee");
         //users.add("Dimon");
-        MessagesAdapter adapter = new MessagesAdapter(this, users, messages);
         ListView lv = (ListView) findViewById(R.id.chatListView);
         lv.setAdapter(adapter);
-
+        messagesUpdater();
     }
 
+    void messagesUpdater() {
+        Thread mesUpdThread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                String token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJ1c2VybmFtZSI6ImRpbWEiLCJleHAiOjE1MjE5NjkzNjYsImVtYWlsIjoiZGltYUBnbWFpbC5jb20ifQ.SEIzNqFEh_AQOvI5k4ZxhZXIqespskkxocYVPJg3a28";
+                API api = new API(token);
+                while (true) {
+                    try {
+                        sleep(5000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    newMessages.clear();
+                    newMessages = api.getChatMessages(1);
+
+                    Log.d("Updater", "6 seconds");
+
+                }
+            }
+        });
+        mesUpdThread.start();
+    }
 
 
     @Override

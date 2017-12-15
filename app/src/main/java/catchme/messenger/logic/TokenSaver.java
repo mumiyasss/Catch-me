@@ -31,6 +31,8 @@ public class TokenSaver extends SugarRecord {
         this.token = token;
     }
 
+    public TokenSaver(Token token) { this.token = token.getToken(); }
+
     public String getToken() {
         return token;
     }

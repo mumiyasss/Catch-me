@@ -9,6 +9,12 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import java.util.List;
+
+import catchme.messenger.logic.API;
+import catchme.messenger.logic.models.Chat;
+import catchme.messenger.logic.models.Message;
+
 public class ChatListActivity extends AppCompatActivity {
 
     public static String [] users = new String[3];
@@ -25,9 +31,12 @@ public class ChatListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_list);
-        addChat("User1");
-        addChat("User2");
-        addChat("User3");
+        API api = new API("ashdfoorieri");
+        List<Chat> chats = api.getSyncChatList();
+        for (Chat chat : chats) {
+            addChat(chat.getName());
+        }
+
         mRecyclerView = (RecyclerView) findViewById(R.id.rv);
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);

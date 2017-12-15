@@ -12,13 +12,27 @@ import com.orm.SugarRecord;
 
 public class Message extends SugarRecord {
 
+    @SerializedName("chat")
+    @Expose
+    private Integer chat;
+
     @SerializedName("text")
     @Expose
     private String text;
 
-    @SerializedName("chat")
+    @SerializedName("author")
     @Expose
-    private Integer chat;
+    private Integer author;
+
+
+    public Integer getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(Integer author) {
+        this.author = author;
+    }
+
 
     public String getText() {
         return text;

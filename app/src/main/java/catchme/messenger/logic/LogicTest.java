@@ -33,8 +33,7 @@ public class LogicTest extends AppCompatActivity implements View.OnClickListener
                 api = new API(name, password);
                 break;
             case R.id.getChats:
-                api.getSyncMessages(1);
-
+                api.getChatMessages(1);
                 break;
         }
     }

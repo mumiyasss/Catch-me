@@ -9,18 +9,39 @@ import android.widget.TextView;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.List;
+
+import catchme.messenger.logic.models.Message;
 
 public class MessagesAdapter extends BaseAdapter {
 
     private Context mContext;
-    private ArrayList<String> messages = new ArrayList<>();
-    private ArrayList<String> users = new ArrayList<>();
+    private List<String> messages = new ArrayList<>();
+    private List<String> users = new ArrayList<>();
     private int k = 0;
 
-    public MessagesAdapter(Context context, ArrayList<String> messages, ArrayList <String> users) {
+    public MessagesAdapter(Context context, List<String> messages, List <String> users) {
         mContext = context;
         this.users = users;
         this.messages = messages;
+    }
+
+    public MessagesAdapter(Context context, List<Message> messages) {
+        mContext = context;
+
+        for(Message mes : messages) {
+            String author;
+            if(mes.getAuthor() == 1)
+                author = "kolya";
+            else if(mes.getAuthor() == 2)
+                author = "dima";
+            else if(mes.getAuthor() == 5)
+            author = "lesya";
+            else author = "user";
+            this.users.add(author);
+            this.messages.add(mes.getText());
+        }
+
     }
 
     static class ViewHolder {

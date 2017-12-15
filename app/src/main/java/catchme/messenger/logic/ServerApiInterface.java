@@ -49,7 +49,9 @@ public interface ServerApiInterface {
     @POST("lowMes/{chat_id}/send_message/")
     void sendMessage(
             @Path("chat_id") Integer chatId,
-            @Header("Authorization") String token
+            @Header("Authorization") String token,
+            @Body Message message
+
     );
 
 }

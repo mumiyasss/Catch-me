@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 
 import catchme.messenger.logic.*;
+import catchme.messenger.logic.models.Token;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -18,6 +19,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+
         dima = findViewById(R.id.dima);
         lesya = findViewById(R.id.lesya);
         logicButton = findViewById(R.id.logic);
@@ -26,6 +29,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         logicButton.setOnClickListener(this);
         dima.setOnClickListener(this);
         lesya.setOnClickListener(this);
+
+        try {
+            TokenSaver ts = TokenSaver.findById(TokenSaver.class, 1);
+            API api = new API(ts.getToken());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 
@@ -40,7 +50,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(logicIntentMain);
                 break;
             case R.id.lesya:
-                Intent uiIntentMain = new Intent(this, LoginActivity.class);
+                Intent uiIntentMain = new Intent(this, ChatActivity.class);
                 startActivity(uiIntentMain);
                 break;
         }

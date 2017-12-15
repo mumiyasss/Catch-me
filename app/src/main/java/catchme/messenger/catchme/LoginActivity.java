@@ -90,9 +90,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             @Override
             public void onClick(View view) {
                 attemptLogin();
-                String name = ((AutoCompleteTextView) findViewById(R.id.email)).getText().toString();
-                String password = ((EditText) findViewById(R.id.password)).getText().toString();
-                API api = new API(name, password);
+                //String name = ((AutoCompleteTextView) findViewById(R.id.email)).getText().toString();
+                //String password = ((EditText) findViewById(R.id.password)).getText().toString();
+                //API api = new API(name, password);
                 Intent intent = new Intent(LoginActivity.this, ChatListActivity.class);
                 startActivity(intent);
             }
