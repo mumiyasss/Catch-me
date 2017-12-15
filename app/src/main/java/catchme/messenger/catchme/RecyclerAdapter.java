@@ -9,12 +9,16 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.view.LayoutInflater;
 
+import java.util.List;
+
+import catchme.messenger.logic.models.Chat;
+
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
 
-    private String[] users;
+    private List<Chat> users;
     private static Context context;
 
-    public RecyclerAdapter(Context context, String[] users) {
+    public RecyclerAdapter(Context context, List<Chat> users) {
         this.users = users;
         this.context = context;
     }
@@ -37,19 +41,17 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     }
     @Override
     public int getItemCount() {
-        return users.length;
+        return users.size();
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.userName.setText(users[position]);
+        holder.userName.setText(users.get(position).getName());
     }
 
     @Override
     public RecyclerAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.chat_list_item, parent, false);
-
-
         ViewHolder vh = new ViewHolder(v);
         return vh;
     }

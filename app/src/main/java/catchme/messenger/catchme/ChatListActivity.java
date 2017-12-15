@@ -12,12 +12,6 @@ import catchme.messenger.logic.models.Chat;
 
 public class ChatListActivity extends AppCompatActivity {
 
-    public static String [] users = new String[3];
-    public int iaddChat = 0;
-    public void addChat(String chat) {
-        users[iaddChat] = chat;
-        iaddChat++;
-    }
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
@@ -28,15 +22,12 @@ public class ChatListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_chat_list);
         API api = new API("ashdfoorieri");
         List<Chat> chats = api.getSyncChatList();
-        for (Chat chat : chats) {
-            addChat(chat.getName());
-        }
 
         mRecyclerView = (RecyclerView) findViewById(R.id.rv);
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
-        mAdapter = new RecyclerAdapter(this, users);
+        mAdapter = new RecyclerAdapter(this, chats);
         mRecyclerView.setAdapter(mAdapter);
 
 
