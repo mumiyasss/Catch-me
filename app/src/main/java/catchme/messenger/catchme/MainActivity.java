@@ -14,7 +14,7 @@ import com.orm.SugarContext;
 import catchme.messenger.logic.*;
 import catchme.messenger.logic.models.Token;
 
-public class MainActivity extends AppCompatActivity/* implements View.OnClickListener */ {
+public class MainActivity extends AppCompatActivity {
 
     Button dima, lesya, logicButton;
 
@@ -23,17 +23,15 @@ public class MainActivity extends AppCompatActivity/* implements View.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        SugarDb db = new SugarDb(this);
-//        db.onCreate(db.getDB());
-
         SugarContext.init(this);
 
         Intent intent;
         try {
             Token token = Token.findById(Token.class, 1);
-             intent = new Intent(this, ChatListActivity.class);
+            Log.d("TokenLog", token.toString());
+            intent = new Intent(this, ChatListActivity.class);
         } catch (Exception e) {
-            intent = new Intent(this, LogicTest.class);
+            intent = new Intent(this, LoginActivity.class);
         }
         startActivity(intent);
     }

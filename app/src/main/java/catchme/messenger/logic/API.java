@@ -62,7 +62,6 @@ public class API {
         Log.d("IN MAIN Thread", chats.toString());
     }
 
-
     public void saveToken(Context context) {
         SugarContext.init(context);
         token.save();
