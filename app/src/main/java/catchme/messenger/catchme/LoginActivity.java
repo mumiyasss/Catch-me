@@ -31,6 +31,8 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.orm.SugarContext;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -58,6 +60,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     /**
      * Keep track of the login task to ensure we can cancel it if requested.
      */
+
     private UserLoginTask mAuthTask = null;
 
     // UI references.
@@ -93,19 +96,26 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 ProgressBar progressBar = (ProgressBar) findViewById(R.id.login_progress);
                 progressBar.setVisibility(ProgressBar.VISIBLE);
                 attemptLogin();
-                //String name = ((AutoCompleteTextView) findViewById(R.id.email)).getText().toString();
-                //String password = ((EditText) findViewById(R.id.password)).getText().toString();
-                //API api = new API(name, password);
+//                String name = ((AutoCompleteTextView) findViewById(R.id.email)).getText().toString();
+//                String password = ((EditText) findViewById(R.id.password)).getText().toString();
+//                API api = new API(name, password);
                 Intent intent = new Intent(LoginActivity.this, ChatListActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
-                //progressBar.setVisibility(ProgressBar.INVISIBLE);
+//                progressBar.setVisibility(ProgressBar.INVISIBLE);
             }
         });
 
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
 
+        SugarContext.init(this);
+    }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        SugarContext.terminate();
     }
 
     private void populateAutoComplete() {
@@ -150,7 +160,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             }
         }
     }
-
 
     /**
      * Attempts to sign in or register the account specified by the login form.
@@ -292,7 +301,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         mEmailView.setAdapter(adapter);
     }
-
 
     private interface ProfileQuery {
         String[] PROJECTION = {

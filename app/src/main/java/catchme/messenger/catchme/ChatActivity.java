@@ -14,16 +14,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import catchme.messenger.logic.API;
+import catchme.messenger.logic.models.Chat;
 import catchme.messenger.logic.models.Message;
 
 import static java.lang.Thread.sleep;
 
 public class ChatActivity extends AppCompatActivity {
-    static List<String> messages = new ArrayList<>();
-    static List<String> users = new ArrayList<>();
     List<Message> newMessages = new ArrayList<>();
-    MessagesAdapter adapter = new MessagesAdapter(this, users, messages);
+
+
     Intent intent = getIntent();
+    MessagesAdapter adapter = new MessagesAdapter(this, newMessages);
+
 
 
     String token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJ1c2VybmFtZSI6ImRpbWEiLCJleHAiOjE1MjE5NjkzNjYsImVtYWlsIjoiZGltYUBnbWFpbC5jb20ifQ.SEIzNqFEh_AQOvI5k4ZxhZXIqespskkxocYVPJg3a28";
@@ -35,6 +37,8 @@ public class ChatActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
 
+
+        Intent intent = getIntent();
 
         //messages.add("hello");
         //users.add("Kolyan");
@@ -80,21 +84,20 @@ public class ChatActivity extends AppCompatActivity {
         return true;
     }
 
-    public void send(View view) {
-        EditText messageField = findViewById(R.id.messageField);
-        String s = messageField.getText().toString().trim();
 
-        if (!s.equals("")) {
-            api.sendMessage(CHAT_ID, s);
-            messages.add(s);
-            users.add("me");
-            messageField.setText("");
-            MessagesAdapter adapter = new MessagesAdapter(this, users, messages);
-            ListView lv = (ListView) findViewById(R.id.chatListView);
-            lv.setAdapter(adapter);
-
-        }
-    }
-
+//    public void send(View view) {
+//        EditText messageField = findViewById(R.id.messageField);
+//        String s = messageField.getText().toString().trim();
+//
+//        if (!s.equals("")) {
+//            messages.add(s);
+//            users.add("me");
+//            messageField.setText("");
+//            MessagesAdapter adapter = new MessagesAdapter(this, users, messages);
+//            ListView lv = (ListView) findViewById(R.id.chatListView);
+//            lv.setAdapter(adapter);
+//
+//        }
+//    }
 
 }

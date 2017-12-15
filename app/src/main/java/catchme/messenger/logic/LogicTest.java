@@ -74,18 +74,7 @@ public class LogicTest extends AppCompatActivity implements View.OnClickListener
                 String name = ((EditText) findViewById(R.id.name)).getText().toString();
                 String password = ((EditText) findViewById(R.id.password)).getText().toString();
                 api = new API(name, password);
-//
-//                final Token token = api.getToken();
-//                Thread tokenSaverThread = new Thread(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        token.save();
-//                    }
-//                });
-//                tokenSaverThread.start();
-
                 api.saveToken(this);
-
                 break;
             case R.id.getChats:
                 api.getChatMessages(1);
