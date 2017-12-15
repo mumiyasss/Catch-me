@@ -1,5 +1,6 @@
 package catchme.messenger.catchme;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -22,9 +23,9 @@ import static java.lang.Thread.sleep;
 public class ChatActivity extends AppCompatActivity {
     List<Message> newMessages = new ArrayList<>();
 
-
+    Context context;
     Intent intent = getIntent();
-    MessagesAdapter adapter = new MessagesAdapter(this, newMessages);
+
 
 
 
@@ -44,9 +45,9 @@ public class ChatActivity extends AppCompatActivity {
         //users.add("Kolyan");
         //messages.add("its meee");
         //users.add("Dimon");
-        ListView lv = (ListView) findViewById(R.id.chatListView);
-        lv.setAdapter(adapter);
+
         messagesUpdater();
+
     }
 
     void messagesUpdater() {
@@ -58,8 +59,10 @@ public class ChatActivity extends AppCompatActivity {
 
                     newMessages.clear();
                     newMessages.addAll(api.getChatMessages(CHAT_ID));
-                    Log.d("Updater", newMessages.toString());
-
+                    //Log.d("Updater", newMessages.toString());
+                    MessagesAdapter adapter = new MessagesAdapter(context, newMessages);
+                    ListView lv = (ListView) findViewById(R.id.chatListView);
+                    lv.setAdapter(adapter);
                     try {
                         sleep(5000);
                     } catch (InterruptedException e) {
