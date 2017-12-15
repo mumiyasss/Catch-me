@@ -25,6 +25,7 @@ public class ChatActivity extends AppCompatActivity {
 
     Context context;
    // Intent intent = getIntent();
+   MessagesAdapter adapter = new MessagesAdapter(context, newMessages);
 
 
 //    MessagesAdapter adapter = new MessagesAdapter(this, newMessages);
@@ -54,6 +55,10 @@ public class ChatActivity extends AppCompatActivity {
 
     }
 
+    void uiUpdater() {
+
+    }
+
     void messagesUpdater() {
         Thread mesUpdThread = new Thread(new Runnable() {
             @Override
@@ -64,9 +69,6 @@ public class ChatActivity extends AppCompatActivity {
                     newMessages.clear();
                     newMessages.addAll(api.getChatMessages(CHAT_ID));
                     //Log.d("Updater", newMessages.toString());
-                    MessagesAdapter adapter = new MessagesAdapter(context, newMessages);
-                    ListView lv = (ListView) findViewById(R.id.chatListView);
-                    lv.setAdapter(adapter);
                     try {
                         sleep(5000);
                     } catch (InterruptedException e) {
@@ -101,9 +103,9 @@ public class ChatActivity extends AppCompatActivity {
 //            messages.add(s);
 //            users.add("me");
               messageField.setText("");
-//            MessagesAdapter adapter = new MessagesAdapter(this, users, messages);
-//            ListView lv = (ListView) findViewById(R.id.chatListView);
-//            lv.setAdapter(adapter);
+            MessagesAdapter adapter = new MessagesAdapter(this, newMessages);
+            ListView lv = (ListView) findViewById(R.id.chatListView);
+            lv.setAdapter(adapter);
 
         }
     }
