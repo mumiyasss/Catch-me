@@ -35,7 +35,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
                 public void onClick(View view) {
                     Intent intent = new Intent(context, ChatActivity.class);
                     //Integer i = 9;
-                    //intent.putExtra("chat_id", chatId);
+                    //intent.putExtra("chat_id", 1);
                     context.startActivity(intent);
                 }
             });
