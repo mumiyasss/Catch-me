@@ -38,6 +38,7 @@ public class MessagesAdapter extends BaseAdapter {
             else if(mes.getAuthor() == 5)
             author = "lesya";
             else author = "user";
+
             this.users.add(author);
             this.messages.add(mes.getText());
         }

@@ -28,6 +28,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -89,12 +90,15 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
+                ProgressBar progressBar = (ProgressBar) findViewById(R.id.login_progress);
+                progressBar.setVisibility(ProgressBar.VISIBLE);
                 attemptLogin();
                 //String name = ((AutoCompleteTextView) findViewById(R.id.email)).getText().toString();
                 //String password = ((EditText) findViewById(R.id.password)).getText().toString();
                 //API api = new API(name, password);
                 Intent intent = new Intent(LoginActivity.this, ChatListActivity.class);
                 startActivity(intent);
+                //progressBar.setVisibility(ProgressBar.INVISIBLE);
             }
         });
 

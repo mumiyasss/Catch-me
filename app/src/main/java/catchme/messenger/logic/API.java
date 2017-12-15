@@ -17,6 +17,7 @@ import catchme.messenger.catchme.R;
 import catchme.messenger.logic.models.Account;
 import catchme.messenger.logic.models.Chat;
 import catchme.messenger.logic.models.Message;
+import catchme.messenger.logic.models.SendingMessage;
 import catchme.messenger.logic.models.Token;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -135,7 +136,6 @@ public class API {
         return chats;
     }
 
-    List<Message> messages;
     void getSyncMessages(final Integer chatId ) {
         Thread th = new Thread(new Runnable() {
             @Override
@@ -160,12 +160,14 @@ public class API {
         Log.d("IN MAIN Thread", messages.toString());
     }
 
+    public List<Message> messages = new ArrayList<>();;
+
     public List<Message> getChatMessages(Integer chatId) {
-        messages = new ArrayList<>();
 
         service.getMessages(chatId, token.getToken()).enqueue(new Callback<List<Message>>() {
             @Override
             public void onResponse(Call<List<Message>> call, Response<List<Message>> response) {
+                messages.clear();
                 messages.addAll(response.body());
                 Log.d("Response", messages.toString());
             }
@@ -175,9 +177,24 @@ public class API {
                 Log.d("Exception", t.toString());
             }
         });
-        Log.d("Log", "getChatMessages() successful call");
 
         return messages;
+    }
+
+    public void sendMessage(Integer chatId, String message) {
+        final SendingMessage sm = new SendingMessage(message, chatId);
+        String conType = "application/json";
+        service.sendMessage(conType, token.getToken(), sm).enqueue(new Callback<Message>() {
+            @Override
+            public void onResponse(Call<Message> call, Response<Message> response) {
+                Log.d("sm", "Message sent");
+            }
+
+            @Override
+            public void onFailure(Call<Message> call, Throwable t) {
+
+            }
+        });
     }
 }
 

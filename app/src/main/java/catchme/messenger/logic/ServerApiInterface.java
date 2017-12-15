@@ -4,6 +4,7 @@ package catchme.messenger.logic;
 import catchme.messenger.logic.models.Account;
 import catchme.messenger.logic.models.Chat;
 import catchme.messenger.logic.models.Message;
+import catchme.messenger.logic.models.SendingMessage;
 import catchme.messenger.logic.models.Token;
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -46,11 +47,12 @@ public interface ServerApiInterface {
             @Header("Authorization") String token // JWT eyJ0...
     );
 
-    @POST("lowMes/{chat_id}/send_message/")
-    void sendMessage(
-            @Path("chat_id") Integer chatId,
+    @POST("lowMes/send_message/")
+    Call<Message> sendMessage(
+            @Header("Content-Type") String contentType,
+            //@Path("chat_id") Integer chatId,
             @Header("Authorization") String token,
-            @Body Message message
+            @Body SendingMessage message
 
     );
 

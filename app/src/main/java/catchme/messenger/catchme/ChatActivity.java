@@ -45,16 +45,17 @@ public class ChatActivity extends AppCompatActivity {
                 String token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJ1c2VybmFtZSI6ImRpbWEiLCJleHAiOjE1MjE5NjkzNjYsImVtYWlsIjoiZGltYUBnbWFpbC5jb20ifQ.SEIzNqFEh_AQOvI5k4ZxhZXIqespskkxocYVPJg3a28";
                 API api = new API(token);
                 while (true) {
+
+                    newMessages.clear();
+                    newMessages.addAll(api.getChatMessages(1));
+                    api.sendMessage(1, "api works!");
+                    Log.d("Updater", newMessages.toString());
+
                     try {
                         sleep(5000);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-                    newMessages.clear();
-                    newMessages = api.getChatMessages(1);
-
-                    Log.d("Updater", "6 seconds");
-
                 }
             }
         });
@@ -85,6 +86,7 @@ public class ChatActivity extends AppCompatActivity {
             MessagesAdapter adapter = new MessagesAdapter(this, users, messages);
             ListView lv = (ListView) findViewById(R.id.chatListView);
             lv.setAdapter(adapter);
+
         }
     }
 
