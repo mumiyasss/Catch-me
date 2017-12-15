@@ -23,11 +23,18 @@ public class ChatActivity extends AppCompatActivity {
     static List<String> users = new ArrayList<>();
     List<Message> newMessages = new ArrayList<>();
     MessagesAdapter adapter = new MessagesAdapter(this, users, messages);
+    Intent intent = getIntent();
 
+
+    String token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJ1c2VybmFtZSI6ImRpbWEiLCJleHAiOjE1MjE5NjkzNjYsImVtYWlsIjoiZGltYUBnbWFpbC5jb20ifQ.SEIzNqFEh_AQOvI5k4ZxhZXIqespskkxocYVPJg3a28";
+    API api = new API(token);
+
+    final Integer CHAT_ID = intent.getIntExtra("chat_id", 1);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
+
 
         //messages.add("hello");
         //users.add("Kolyan");
@@ -42,13 +49,11 @@ public class ChatActivity extends AppCompatActivity {
         Thread mesUpdThread = new Thread(new Runnable() {
             @Override
             public void run() {
-                String token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJ1c2VybmFtZSI6ImRpbWEiLCJleHAiOjE1MjE5NjkzNjYsImVtYWlsIjoiZGltYUBnbWFpbC5jb20ifQ.SEIzNqFEh_AQOvI5k4ZxhZXIqespskkxocYVPJg3a28";
-                API api = new API(token);
+
                 while (true) {
 
                     newMessages.clear();
-                    newMessages.addAll(api.getChatMessages(1));
-                    api.sendMessage(1, "api works!");
+                    newMessages.addAll(api.getChatMessages(CHAT_ID));
                     Log.d("Updater", newMessages.toString());
 
                     try {
@@ -80,6 +85,7 @@ public class ChatActivity extends AppCompatActivity {
         String s = messageField.getText().toString().trim();
 
         if (!s.equals("")) {
+            api.sendMessage(CHAT_ID, s);
             messages.add(s);
             users.add("me");
             messageField.setText("");

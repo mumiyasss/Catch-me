@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+
 
         SugarContext.init(this);
 
@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
             intent = new Intent(this, LoginActivity.class);
         }
         startActivity(intent);
+        setContentView(R.layout.activity_main);
     }
 
     @Override
