@@ -6,6 +6,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.orm.SugarContext;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,29 +32,30 @@ public class API {
     ServerApiInterface service;
     Token token;
 
-    public API(String name, String password) {
+    public Token getToken() {
+        return token;
+    }
+
+    private API() {
         retrofit = new Retrofit.Builder()
                 .baseUrl("http://ksftx.pythonanywhere.com/api/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         service = retrofit.create(ServerApiInterface.class);
+    }
 
+    public API(String name, String password) {
+        this();
         getToken(name, password);
     }
 
     public API(String token) {
-        retrofit = new Retrofit.Builder()
-                .baseUrl("http://ksftx.pythonanywhere.com/api/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        service = retrofit.create(ServerApiInterface.class);
-
+        this();
         this.token = new Token(token);
     }
 
     void showToken() {
         Log.d("IN MAIN Thread", token.toString());
-
     }
 
     void getToken(String name, String password) {
@@ -70,7 +73,6 @@ public class API {
                 }
             }
         });
-
         th.setName("Get token thread");
         th.start();
 
@@ -105,13 +107,11 @@ public class API {
     }
 
     List<Message> messages;
-
     List<Message> getChatMessages(Integer chatId) {
         messages = new ArrayList<>();
 
         service.getMessages(chatId, "JWT " + token.getToken()).enqueue(new Callback<List<Message>>() {
             @Override
-
             public void onResponse(Call<List<Message>> call, Response<List<Message>> response) {
                 messages.addAll(response.body());
                 Log.d("Response", messages.toString());
@@ -123,9 +123,9 @@ public class API {
             }
 
         });
-
         Log.d("Log", "getChatMessages() successful call");
 
         return messages;
     }
 }
+

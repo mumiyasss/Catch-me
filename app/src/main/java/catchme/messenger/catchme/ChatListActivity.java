@@ -34,9 +34,5 @@ public class ChatListActivity extends AppCompatActivity {
         mRecyclerView.setLayoutManager(mLayoutManager);
         mAdapter = new RecyclerAdapter(this, users);
         mRecyclerView.setAdapter(mAdapter);
-
-
-
     }
-
 }
