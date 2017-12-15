@@ -1,5 +1,6 @@
 package catchme.messenger.logic;
 
+import android.content.Context;
 import android.util.Log;
 import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.Button;
@@ -62,6 +63,12 @@ public class API {
     }
 
 
+    public void saveToken(Context context) {
+        SugarContext.init(context);
+        token.save();
+        SugarContext.terminate();
+    }
+
     void getToken(String name, String password) {
         final Account account = new Account(name, password);
 
@@ -72,13 +79,6 @@ public class API {
                     Response<Token> response = service.getToken("application/json", account).execute();
                     token = new Token(response.body().getToken());
                     Log.d("Response", token.toString());
-
-
-//                    TokenSaver ts = new TokenSaver(token);
-//                    ts.save();
-//
-//                    ts = TokenSaver.findById(TokenSaver.class, 1);
-//                    Log.d("Token from db", ts.toString());
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

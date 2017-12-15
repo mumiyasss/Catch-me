@@ -23,40 +23,19 @@ public class MainActivity extends AppCompatActivity/* implements View.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        dima = findViewById(R.id.dima);
-//        lesya = findViewById(R.id.lesya);
-//        logicButton = findViewById(R.id.logic);
-//
-//
-//        logicButton.setOnClickListener(this);
-//        dima.setOnClickListener(this);
-//        lesya.setOnClickListener(this);
+//        SugarDb db = new SugarDb(this);
+//        db.onCreate(db.getDB());
 
         SugarContext.init(this);
 
         Intent intent;
         try {
             Token token = Token.findById(Token.class, 1);
-//            Log.d("token", token.toString());
-//            Toast.makeText(this, "TOKEN is in DB, goto chatListAct", Toast.LENGTH_LONG).show();
              intent = new Intent(this, ChatListActivity.class);
         } catch (Exception e) {
-//            Log.d("token", "no token detected");
-//            Toast.makeText(this, "DB has no TOKEN, goto logintAct", Toast.LENGTH_LONG).show();
             intent = new Intent(this, LogicTest.class);
         }
         startActivity(intent);
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        try {
-            Token.findById(Token.class, 1)
-                    .save();
-        } catch (Exception e) {}
-
-//        SugarContext.terminate();
     }
 
     @Override
@@ -69,25 +48,4 @@ public class MainActivity extends AppCompatActivity/* implements View.OnClickLis
         } catch (Exception e) {}
         SugarContext.terminate();
     }
-
-
-    /*
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.logic:
-                Intent logicIntent = new Intent(this, catchme.messenger.logic.LogicTest.class);
-                startActivity(logicIntent);
-                break;
-            case R.id.dima:
-                Intent logicIntentMain = new Intent(this, catchme.messenger.logic.STUDY.class);
-                startActivity(logicIntentMain);
-                break;
-            case R.id.lesya:
-                Intent uiIntentMain = new Intent(this, LoginActivity.class);
-                startActivity(uiIntentMain);
-                break;
-        }
-    }
-    */
-
 }
