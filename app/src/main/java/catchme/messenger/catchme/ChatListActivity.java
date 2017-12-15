@@ -29,9 +29,5 @@ public class ChatListActivity extends AppCompatActivity {
         mRecyclerView.setLayoutManager(mLayoutManager);
         mAdapter = new RecyclerAdapter(this, chats);
         mRecyclerView.setAdapter(mAdapter);
-
-
-
     }
-
 }

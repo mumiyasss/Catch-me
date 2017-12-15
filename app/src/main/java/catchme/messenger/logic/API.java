@@ -6,6 +6,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.orm.SugarContext;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,23 +32,25 @@ public class API {
     ServerApiInterface service;
     Token token;
 
-    public API(String name, String password) {
+    public Token getToken() {
+        return token;
+    }
+
+    private API() {
         retrofit = new Retrofit.Builder()
                 .baseUrl("http://ksftx.pythonanywhere.com/api/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         service = retrofit.create(ServerApiInterface.class);
+    }
 
+    public API(String name, String password) {
+        this();
         getToken(name, password);
     }
 
     public API(String token) {
-        retrofit = new Retrofit.Builder()
-                .baseUrl("http://ksftx.pythonanywhere.com/api/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        service = retrofit.create(ServerApiInterface.class);
-
+        this();
         this.token = new Token(token);
     }
 
@@ -172,7 +176,6 @@ public class API {
                 Log.d("Exception", t.toString());
             }
         });
-
         Log.d("Log", "getChatMessages() successful call");
 
         return messages;
