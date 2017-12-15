@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent;
         try {
             Token token = Token.findById(Token.class, 1);
-            Log.d("TokenLog", token.toString());
+//            Log.d("TokenLog", token.toString());
             intent = new Intent(this, ChatListActivity.class);
         } catch (Exception e) {
             intent = new Intent(this, LoginActivity.class);
