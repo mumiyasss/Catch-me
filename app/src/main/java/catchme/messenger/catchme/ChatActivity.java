@@ -23,22 +23,22 @@ public class ChatActivity extends AppCompatActivity {
     List<Message> newMessages = new ArrayList<>();
 
 
-    Intent intent = getIntent();
     MessagesAdapter adapter = new MessagesAdapter(this, newMessages);
-
-
-
     String token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJ1c2VybmFtZSI6ImRpbWEiLCJleHAiOjE1MjE5NjkzNjYsImVtYWlsIjoiZGltYUBnbWFpbC5jb20ifQ.SEIzNqFEh_AQOvI5k4ZxhZXIqespskkxocYVPJg3a28";
+
+
+
     API api = new API(token);
 
-    final Integer CHAT_ID = intent.getIntExtra("chat_id", 1);
+    Intent intent = getIntent();
+    int CHAT_ID ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
 
-
         Intent intent = getIntent();
+        CHAT_ID  = intent.getIntExtra("chat_id", 1);
 
         //messages.add("hello");
         //users.add("Kolyan");
@@ -85,19 +85,20 @@ public class ChatActivity extends AppCompatActivity {
     }
 
 
-//    public void send(View view) {
-//        EditText messageField = findViewById(R.id.messageField);
-//        String s = messageField.getText().toString().trim();
-//
-//        if (!s.equals("")) {
+    public void send(View view) {
+        EditText messageField = findViewById(R.id.messageField);
+        String s = messageField.getText().toString().trim();
+
+        if (!s.equals("")) {
+            api.sendMessage(CHAT_ID, s);
 //            messages.add(s);
 //            users.add("me");
-//            messageField.setText("");
+              messageField.setText("");
 //            MessagesAdapter adapter = new MessagesAdapter(this, users, messages);
 //            ListView lv = (ListView) findViewById(R.id.chatListView);
 //            lv.setAdapter(adapter);
-//
-//        }
-//    }
+
+        }
+    }
 
 }
