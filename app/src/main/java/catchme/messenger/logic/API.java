@@ -137,9 +137,6 @@ public class API {
     }
 
     List<Message> messages;
-<<<<<<< HEAD
-    List<Message> getChatMessages(Integer chatId) {
-=======
     void getSyncMessages(final Integer chatId ) {
         Thread th = new Thread(new Runnable() {
             @Override
@@ -165,7 +162,6 @@ public class API {
     }
 
     public List<Message> getChatMessages(Integer chatId) {
->>>>>>> 8c8bc3ee7622039134030a0c17c451b7d88142de
         messages = new ArrayList<>();
 
         service.getMessages(chatId, token.getToken()).enqueue(new Callback<List<Message>>() {

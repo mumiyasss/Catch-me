@@ -23,7 +23,6 @@ public class MainActivity extends AppCompatActivity/* implements View.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-<<<<<<< HEAD
 //        dima = findViewById(R.id.dima);
 //        lesya = findViewById(R.id.lesya);
 //        logicButton = findViewById(R.id.logic);
@@ -56,13 +55,6 @@ public class MainActivity extends AppCompatActivity/* implements View.OnClickLis
             Token.findById(Token.class, 1)
                     .save();
         } catch (Exception e) {}
-=======
-
-
-        dima = findViewById(R.id.dima);
-        lesya = findViewById(R.id.lesya);
-        logicButton = findViewById(R.id.logic);
->>>>>>> 8c8bc3ee7622039134030a0c17c451b7d88142de
 
 //        SugarContext.terminate();
     }
@@ -71,24 +63,11 @@ public class MainActivity extends AppCompatActivity/* implements View.OnClickLis
     protected void onDestroy() {
         super.onDestroy();
 
-<<<<<<< HEAD
         try {
             Token.findById(Token.class, 1)
                     .save();
         } catch (Exception e) {}
         SugarContext.terminate();
-=======
-        logicButton.setOnClickListener(this);
-        dima.setOnClickListener(this);
-        lesya.setOnClickListener(this);
-
-        try {
-            TokenSaver ts = TokenSaver.findById(TokenSaver.class, 1);
-            API api = new API(ts.getToken());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
->>>>>>> 8c8bc3ee7622039134030a0c17c451b7d88142de
     }
 
 

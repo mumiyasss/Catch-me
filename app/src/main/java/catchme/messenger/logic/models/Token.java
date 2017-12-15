@@ -14,11 +14,8 @@ public class Token extends SugarRecord {
         this.token = "JWT " + token;
     }
 
-<<<<<<< HEAD
     public Token() {}
 
-=======
->>>>>>> 8c8bc3ee7622039134030a0c17c451b7d88142de
     public String getToken() {
         return token;
     }
