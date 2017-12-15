@@ -56,10 +56,11 @@ public class API {
         this.token = new Token(token);
     }
 
-    void showToken() {
+    void logToken() {
         Log.d("IN MAIN Thread", token.toString());
     }
-    void showChats() {
+
+    void logChats() {
         Log.d("IN MAIN Thread", chats.toString());
     }
 
@@ -160,7 +161,7 @@ public class API {
         Log.d("IN MAIN Thread", messages.toString());
     }
 
-    public List<Message> messages = new ArrayList<>();;
+    public List<Message> messages = new ArrayList<>();
 
     public List<Message> getChatMessages(Integer chatId) {
 

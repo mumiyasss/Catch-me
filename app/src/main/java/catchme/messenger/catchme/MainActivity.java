@@ -11,6 +11,8 @@ import android.widget.Toast;
 
 import com.orm.SugarContext;
 
+import java.util.Iterator;
+
 import catchme.messenger.logic.*;
 import catchme.messenger.logic.models.Token;
 
@@ -25,9 +27,11 @@ public class MainActivity extends AppCompatActivity {
 
         Intent intent;
         try {
-            Token token = Token.findById(Token.class, 1);
+            Token token = Token.first(Token.class);
+            Log.d("TokenLog", "Token is in db: " + token.toString());
             intent = new Intent(this, ChatListActivity.class);
         } catch (Exception e) {
+            Log.d("TokenLog", "Token not found (in db).");
             intent = new Intent(this, LoginActivity.class);
         }
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -37,13 +41,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-
-        try {
-            Token.findById(Token.class, 1)
-                    .save();
-        } catch (Exception e) {
-            Log.d("Exception","Exception caught onDestroy()@MainActivity");
-        }
+        Log.d("Activity", "MainActivity destroyed.");
         SugarContext.terminate();
     }
 }
