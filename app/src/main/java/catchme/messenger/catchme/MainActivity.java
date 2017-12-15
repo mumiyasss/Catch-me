@@ -4,13 +4,17 @@ package catchme.messenger.catchme;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
+
+import com.orm.SugarContext;
 
 import catchme.messenger.logic.*;
 import catchme.messenger.logic.models.Token;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity/* implements View.OnClickListener */ {
 
     Button dima, lesya, logicButton;
 
@@ -19,26 +23,55 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+//        dima = findViewById(R.id.dima);
+//        lesya = findViewById(R.id.lesya);
+//        logicButton = findViewById(R.id.logic);
+//
+//
+//        logicButton.setOnClickListener(this);
+//        dima.setOnClickListener(this);
+//        lesya.setOnClickListener(this);
 
+        SugarContext.init(this);
 
-        dima = findViewById(R.id.dima);
-        lesya = findViewById(R.id.lesya);
-        logicButton = findViewById(R.id.logic);
+        Intent intent;
+        try {
+            Token token = Token.findById(Token.class, 1);
+//            Log.d("token", token.toString());
+//            Toast.makeText(this, "TOKEN is in DB, goto chatListAct", Toast.LENGTH_LONG).show();
+             intent = new Intent(this, ChatListActivity.class);
+        } catch (Exception e) {
+//            Log.d("token", "no token detected");
+//            Toast.makeText(this, "DB has no TOKEN, goto logintAct", Toast.LENGTH_LONG).show();
+            intent = new Intent(this, LogicTest.class);
+        }
+        startActivity(intent);
+    }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        try {
+            Token.findById(Token.class, 1)
+                    .save();
+        } catch (Exception e) {}
 
-        logicButton.setOnClickListener(this);
-        dima.setOnClickListener(this);
-        lesya.setOnClickListener(this);
+//        SugarContext.terminate();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
 
         try {
-            TokenSaver ts = TokenSaver.findById(TokenSaver.class, 1);
-            API api = new API(ts.getToken());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+            Token.findById(Token.class, 1)
+                    .save();
+        } catch (Exception e) {}
+        SugarContext.terminate();
     }
 
 
+    /*
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.logic:
@@ -50,10 +83,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(logicIntentMain);
                 break;
             case R.id.lesya:
-                Intent uiIntentMain = new Intent(this, ChatActivity.class);
+                Intent uiIntentMain = new Intent(this, LoginActivity.class);
                 startActivity(uiIntentMain);
                 break;
         }
     }
+    */
 
 }
