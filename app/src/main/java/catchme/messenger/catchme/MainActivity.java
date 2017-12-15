@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(logicIntentMain);
                 break;
             case R.id.lesya:
-                Intent uiIntentMain = new Intent(this, ChatActivity.class);
+                Intent uiIntentMain = new Intent(this, LoginActivity.class);
                 startActivity(uiIntentMain);
                 break;
         }

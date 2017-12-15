@@ -1,19 +1,14 @@
 package catchme.messenger.catchme;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ListView;
 
 import java.util.List;
 
 import catchme.messenger.logic.API;
 import catchme.messenger.logic.models.Chat;
-import catchme.messenger.logic.models.Message;
 
 public class ChatListActivity extends AppCompatActivity {
 
