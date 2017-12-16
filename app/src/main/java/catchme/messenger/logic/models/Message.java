@@ -25,6 +25,11 @@ public class Message extends SugarRecord {
     private Integer author;
 
 
+    public Message(String text, Integer author) {
+        this.text = text;
+        this.author = author;
+    }
+
     public Integer getAuthor() {
         return author;
     }

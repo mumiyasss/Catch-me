@@ -2,7 +2,7 @@ package catchme.messenger.catchme;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -25,18 +25,10 @@ public class ChatActivity extends AppCompatActivity {
     List<Message> newMessages = new ArrayList<>();
 
     Context context;
-   // Intent intent = getIntent();
-   MessagesAdapter adapter = new MessagesAdapter(context, newMessages);
+    MessagesAdapter adapter = new MessagesAdapter(context, newMessages);
 
-
-//    MessagesAdapter adapter = new MessagesAdapter(this, newMessages);
     String token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJ1c2VybmFtZSI6ImRpbWEiLCJleHAiOjE1MjE5NjkzNjYsImVtYWlsIjoiZGltYUBnbWFpbC5jb20ifQ.SEIzNqFEh_AQOvI5k4ZxhZXIqespskkxocYVPJg3a28";
-
-
-
-
     API api = new API(token);
-    //API api;
 
     Intent intent = getIntent();
     int CHAT_ID ;
@@ -48,22 +40,45 @@ public class ChatActivity extends AppCompatActivity {
         Intent intent = getIntent();
         CHAT_ID  = intent.getIntExtra("chat_id", 1);
 
-//        SharedPreferences sPref = getPreferences(MODE_PRIVATE);
-//        String tokenPr = sPref.getString("TOKEN", "");
-//        api = new API(tokenPr, 1);
+        //messagesUpdater();
+        MesUp messagesUpdater = new MesUp();
+        messagesUpdater.execute(CHAT_ID);
+    }
 
-        //messages.add("hello");
-        //users.add("Kolyan");
-        //messages.add("its meee");
-        //users.add("Dimon");
+    class MesUp extends AsyncTask<Integer, List<Message>, Void> {
 
-        messagesUpdater();
+        @Override
+        protected Void doInBackground(Integer... chatId) {
+            while (true) {
+                newMessages.clear();
+                List<Message> just_uploaded = api.getChatMessages(CHAT_ID);
+                // Проверка на наличие отправленного сообщения
+                if(just_uploaded.size() >= newMessages.size()) {
+                    // Если да, то записываем изменения
+                    newMessages.addAll(just_uploaded);
+                    publishProgress(newMessages);
+                }
+                try {
+                    sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+
+        @Override
+        protected void onProgressUpdate(List<Message>... nm) {
+            super.onProgressUpdate(nm);
+            MessagesAdapter adapter = new MessagesAdapter(ChatActivity.this, newMessages);
+            ListView lv = (ListView) findViewById(R.id.chatListView);
+            lv.setAdapter(adapter);
+        }
 
     }
 
-    void uiUpdater() {
 
-    }
+
 
     void messagesUpdater() {
         Thread mesUpdThread = new Thread(new Runnable() {
@@ -106,6 +121,8 @@ public class ChatActivity extends AppCompatActivity {
 
         if (!s.equals("")) {
             api.sendMessage(CHAT_ID, s);
+            Message m = new Message(s, 0);
+            newMessages.add(m);
             messageField.setText("");
             MessagesAdapter adapter = new MessagesAdapter(this, newMessages);
             ListView lv = (ListView) findViewById(R.id.chatListView);

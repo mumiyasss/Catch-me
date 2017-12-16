@@ -26,6 +26,9 @@ public class MessagesAdapter extends BaseAdapter {
 
         for(Message mes : messages) {
             String author;
+            if(mes.getAuthor() == 0)
+                author = "Идет отправка вашего сообщения...";
+            else
             if(mes.getAuthor() == 1)
                 author = "kolya";
             else if(mes.getAuthor() == 2)
