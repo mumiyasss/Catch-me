@@ -19,15 +19,15 @@ public class MainActivity extends AppCompatActivity {
         SugarContext.init(this);
 
         Intent intent;
-//        try {
-//            Token token = Token.first(Token.class);
-//            Log.d("TokenLog", "Token is in db: " + token.toString());
+        try {
+            Token token = Token.first(Token.class);
+            Log.d("TokenLog", "Token is in db: " + token.toString());
+            intent = new Intent(this, ChatListActivity.class);
+        } catch (Exception e) {
+            Log.d("TokenLog", "Token not found (in db).");
             intent = new Intent(this, LoginActivity.class);
-//        } catch (Exception e) {
-//            Log.d("TokenLog", "Token not found (in db).");
-//            intent = new Intent(this, LoginActivity.class);
-//
-//        }
+
+        }
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
         setContentView(R.layout.activity_main);

@@ -97,7 +97,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 //                SharedPreferences.Editor ed = sPref.edit();
 //                ed.putString("TOKEN", api.token.getToken());
 
-                //api.saveToken(LoginActivity.this);
+                api.saveToken(LoginActivity.this);
 
 //                ed.commit();
 
