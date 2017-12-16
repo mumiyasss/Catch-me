@@ -27,7 +27,7 @@ public class ChatActivity extends AppCompatActivity {
     Context context;
     MessagesAdapter adapter = new MessagesAdapter(context, newMessages);
 
-    String token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJ1c2VybmFtZSI6ImRpbWEiLCJleHAiOjE1MjE5NjkzNjYsImVtYWlsIjoiZGltYUBnbWFpbC5jb20ifQ.SEIzNqFEh_AQOvI5k4ZxhZXIqespskkxocYVPJg3a28";
+    String token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo1LCJ1c2VybmFtZSI6Imxlc3lhIiwiZXhwIjoxNTIyMDUxMTEzLCJlbWFpbCI6Imxlc3lhQG1haWwucnUifQ.JUMsvi1KH_yaLJSctIH3iXy_3rsnr5eZSbF0i5pxIyY";
     API api = new API(token);
 
     Intent intent = getIntent();
@@ -50,11 +50,12 @@ public class ChatActivity extends AppCompatActivity {
         @Override
         protected Void doInBackground(Integer... chatId) {
             while (true) {
-                newMessages.clear();
+
                 List<Message> just_uploaded = api.getChatMessages(CHAT_ID);
                 // Проверка на наличие отправленного сообщения
                 if(just_uploaded.size() >= newMessages.size()) {
                     // Если да, то записываем изменения
+                    newMessages.clear();
                     newMessages.addAll(just_uploaded);
                     publishProgress(newMessages);
                 }

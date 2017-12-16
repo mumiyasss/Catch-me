@@ -29,8 +29,8 @@ public class MainActivity extends AppCompatActivity {
         //try {
             //Token token = Token.first(Token.class);
             //Log.d("TokenLog", "Token is in db: " + token.toString());
-            intent = new Intent(this, ChatActivity.class);
-            intent.putExtra("chat_id", 1);
+            intent = new Intent(this, LoginActivity.class);
+            //intent.putExtra("chat_id", 1);
         //} catch (Exception e) {
             //Log.d("TokenLog", "Token not found (in db).");
           //  intent = new Intent(this, LoginActivity.class);
