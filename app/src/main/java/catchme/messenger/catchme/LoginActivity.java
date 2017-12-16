@@ -3,23 +3,21 @@ package catchme.messenger.catchme;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.app.LoaderManager.LoaderCallbacks;
+import android.content.CursorLoader;
 import android.content.Intent;
+import android.content.Loader;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.support.annotation.NonNull;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.app.LoaderManager.LoaderCallbacks;
-
-import android.content.CursorLoader;
-import android.content.Loader;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
-
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
+import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
@@ -34,7 +32,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-import catchme.messenger.logic.*;
+import catchme.messenger.logic.API;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
@@ -95,12 +93,16 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 String password = ((EditText) findViewById(R.id.password)).getText().toString();
                 API api = new API(name, password);
 
-                SharedPreferences sPref = getPreferences(MODE_PRIVATE);
-                SharedPreferences.Editor ed = sPref.edit();
-                ed.putString("TOKEN", api.token.getToken());
-                ed.commit();
+//                SharedPreferences sPref = getPreferences(MODE_PRIVATE);
+//                SharedPreferences.Editor ed = sPref.edit();
+//                ed.putString("TOKEN", api.token.getToken());
+
+                //api.saveToken(LoginActivity.this);
+
+//                ed.commit();
 
                 Intent intent = new Intent(LoginActivity.this, ChatListActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 //intent.putExtra("token", api.token.getToken());
                 startActivity(intent);
             }
@@ -108,8 +110,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
-
-
     }
 
     private void populateAutoComplete() {

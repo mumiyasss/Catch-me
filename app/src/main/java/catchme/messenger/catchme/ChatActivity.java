@@ -28,6 +28,7 @@ public class ChatActivity extends AppCompatActivity {
     MessagesAdapter adapter = new MessagesAdapter(context, newMessages);
 
     String token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo1LCJ1c2VybmFtZSI6Imxlc3lhIiwiZXhwIjoxNTIyMDUxMTEzLCJlbWFpbCI6Imxlc3lhQG1haWwucnUifQ.JUMsvi1KH_yaLJSctIH3iXy_3rsnr5eZSbF0i5pxIyY";
+
     API api = new API(token);
 
     Intent intent = getIntent();
