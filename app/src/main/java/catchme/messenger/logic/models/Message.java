@@ -2,7 +2,6 @@ package catchme.messenger.logic.models;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import com.orm.SugarRecord;
 
 /**
  * Created by cosmo on 15-Nov-17.
@@ -10,7 +9,7 @@ import com.orm.SugarRecord;
  * Author: cosmos
  */
 
-public class Message extends SugarRecord {
+public class Message {
 
     @SerializedName("chat")
     @Expose

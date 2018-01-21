@@ -80,8 +80,6 @@ public class ChatActivity extends AppCompatActivity {
     }
 
 
-
-
     void messagesUpdater() {
         Thread mesUpdThread = new Thread(new Runnable() {
             @Override

@@ -92,18 +92,10 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 String name = ((AutoCompleteTextView) findViewById(R.id.email)).getText().toString();
                 String password = ((EditText) findViewById(R.id.password)).getText().toString();
                 API api = new API(name, password);
-
-//                SharedPreferences sPref = getPreferences(MODE_PRIVATE);
-//                SharedPreferences.Editor ed = sPref.edit();
-//                ed.putString("TOKEN", api.token.getToken());
-
-                api.saveToken(LoginActivity.this);
-
-//                ed.commit();
+                //api.saveToken(LoginActivity.this);
 
                 Intent intent = new Intent(LoginActivity.this, ChatListActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                //intent.putExtra("token", api.token.getToken());
                 startActivity(intent);
             }
         });

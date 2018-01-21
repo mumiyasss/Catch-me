@@ -7,7 +7,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.orm.SugarContext;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -60,19 +59,6 @@ public class API {
         this.token = new Token(token, i);
     }
 
-    void logToken() {
-        Log.d("IN MAIN Thread", token.toString());
-    }
-
-    void logChats() {
-        Log.d("IN MAIN Thread", chats.toString());
-    }
-
-    public void saveToken(Context context) {
-        SugarContext.init(context);
-        token.save();
-        SugarContext.terminate();
-    }
 
     void getToken(String name, String password) {
         final Account account = new Account(name, password);
