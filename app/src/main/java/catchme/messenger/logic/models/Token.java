@@ -13,12 +13,6 @@ public class Token {
         this.token = "JWT " + token;
     }
 
-    public Token() {}
-
-    public Token(String token, int i) {
-        this.token = token;
-    }
-
     public String getToken() {
         return token;
     }

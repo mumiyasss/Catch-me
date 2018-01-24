@@ -23,7 +23,7 @@ public class MessagesAdapter extends BaseAdapter {
 
     public MessagesAdapter(Context context, List<Message> messages) {
         mContext = context;
-
+        // TODO: решить проблему с авторством сообщений
         for(Message mes : messages) {
             String author;
             if(mes.getAuthor() == 0)

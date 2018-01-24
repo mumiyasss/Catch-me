@@ -30,16 +30,11 @@ public interface ServerApiInterface {
             @Body Account account
     );
 
-    /*
-    @POST("auth/register/")
-    Call<Account> register(
-            @Header("Content-Type") String contentType,
-            @Body Account account
-    );
-    */
 
     @GET("lowMes/")
-    Call<List<Chat>> getChats();
+    Call<List<Chat>> getChats(
+            @Header("Authorization") String token // JWT eyJ0...
+    );
 
     @GET("lowMes/messages/")
     Call<List<Message>> getMessages(
@@ -50,7 +45,6 @@ public interface ServerApiInterface {
     @POST("lowMes/send_message/")
     Call<Message> sendMessage(
             @Header("Content-Type") String contentType,
-            //@Path("chat_id") Integer chatId,
             @Header("Authorization") String token,
             @Body SendingMessage message
 

@@ -28,7 +28,7 @@ public class SendingMessage {
         this.chatId = chatId;
     }
 
-    public SendingMessage(String text, Integer chatId) {
+    public SendingMessage(Integer chatId, String text) {
 
         this.text = text;
         this.chatId = chatId;

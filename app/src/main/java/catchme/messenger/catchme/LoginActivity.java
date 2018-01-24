@@ -91,7 +91,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 attemptLogin();
                 String name = ((AutoCompleteTextView) findViewById(R.id.email)).getText().toString();
                 String password = ((EditText) findViewById(R.id.password)).getText().toString();
-                API api = new API(name, password);
+
+                CatchMeApp app = ((CatchMeApp) getApplicationContext());
+                app.api = new API(name, password);
+
+                //API api = new API(name, password);
                 //api.saveToken(LoginActivity.this);
 
                 Intent intent = new Intent(LoginActivity.this, ChatListActivity.class);

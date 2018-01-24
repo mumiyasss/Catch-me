@@ -29,6 +29,8 @@ public class Message {
         this.author = author;
     }
 
+
+
     public Integer getAuthor() {
         return author;
     }
