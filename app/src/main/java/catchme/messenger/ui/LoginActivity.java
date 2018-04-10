@@ -7,7 +7,6 @@ import android.app.LoaderManager.LoaderCallbacks;
 import android.content.CursorLoader;
 import android.content.Intent;
 import android.content.Loader;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
@@ -32,7 +31,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-import catchme.messenger.logic.API;
+import catchme.messenger.net.API;
 
 import static android.Manifest.permission.READ_CONTACTS;
 

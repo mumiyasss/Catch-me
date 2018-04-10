@@ -7,8 +7,8 @@ import android.support.v7.widget.RecyclerView;
 
 import java.util.List;
 
-import catchme.messenger.logic.API;
-import catchme.messenger.logic.models.Chat;
+import catchme.messenger.net.API;
+import catchme.messenger.net.models.Chat;
 
 public class ChatListActivity extends AppCompatActivity {
 

@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,9 +14,8 @@ import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.List;
 
-import catchme.messenger.logic.API;
-import catchme.messenger.logic.models.Chat;
-import catchme.messenger.logic.models.Message;
+import catchme.messenger.net.API;
+import catchme.messenger.net.models.Message;
 
 import static java.lang.Thread.sleep;
 
