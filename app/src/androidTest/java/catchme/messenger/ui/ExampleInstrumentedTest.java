@@ -1,4 +1,4 @@
-package catchme.messenger.catchme;
+package catchme.messenger.ui;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

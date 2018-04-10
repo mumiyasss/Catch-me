@@ -1,14 +1,18 @@
-package catchme.messenger.messenger;
+package catchme.messenger;
 
 import android.app.Application;
 import android.content.Intent;
 
-import catchme.messenger.net.API;
-import catchme.messenger.ui.LoginActivity;
+import catchme.net.API;
+import catchme.ui.LoginActivity;
 
 
-public class CatchMessengerApp extends Application {
+public class CatchMeApp extends Application {
     private API api;
+
+    public API getApi() {
+        return api;
+    }
 
     @Override
     public void onCreate() {

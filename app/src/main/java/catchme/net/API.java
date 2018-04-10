@@ -1,23 +1,18 @@
-package catchme.messenger.logic;
+package catchme.net;
 
-import android.content.Context;
 import android.util.Log;
-import android.view.accessibility.AccessibilityNodeInfo;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Toast;
 
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import catchme.messenger.catchme.R;
-import catchme.messenger.logic.models.Account;
-import catchme.messenger.logic.models.Chat;
-import catchme.messenger.logic.models.Message;
-import catchme.messenger.logic.models.SendingMessage;
-import catchme.messenger.logic.models.Token;
+import catchme.net.models.Account;
+import catchme.net.models.Chat;
+import catchme.net.models.Message;
+import catchme.net.models.SendingMessage;
+import catchme.net.models.Token;
+import catchme.net.ServerApiInterface;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -53,10 +48,6 @@ public class API {
     public API(String token) {
         this();
         this.token = new Token(token);
-    }
-    public API(String token, int i) {
-        this();
-        this.token = new Token(token, i);
     }
 
 

@@ -1,4 +1,4 @@
-package catchme.messenger.logic.models;
+package catchme.net.models;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -11,12 +11,6 @@ public class Token {
 
     public Token(String token) {
         this.token = "JWT " + token;
-    }
-
-    public Token() {}
-
-    public Token(String token, int i) {
-        this.token = token;
     }
 
     public String getToken() {

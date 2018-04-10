@@ -1,4 +1,4 @@
-package catchme.messenger.catchme;
+package catchme.ui;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -7,8 +7,9 @@ import android.support.v7.widget.RecyclerView;
 
 import java.util.List;
 
-import catchme.messenger.net.API;
-import catchme.messenger.net.models.Chat;
+import catchme.net.API;
+import catchme.net.models.Chat;
+import catchme.ui.adapters.RecyclerAdapter;
 
 public class ChatListActivity extends AppCompatActivity {
 

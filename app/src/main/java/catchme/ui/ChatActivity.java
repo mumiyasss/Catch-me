@@ -1,4 +1,4 @@
-package catchme.messenger.catchme;
+package catchme.ui;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,8 +14,9 @@ import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.List;
 
-import catchme.messenger.net.API;
-import catchme.messenger.net.models.Message;
+import catchme.net.API;
+import catchme.net.models.Message;
+import catchme.ui.adapters.MessagesAdapter;
 
 import static java.lang.Thread.sleep;
 
@@ -97,19 +98,6 @@ public class ChatActivity extends AppCompatActivity {
             }
         });
         mesUpdThread.start();
-    }
-
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.chat_menu, menu);
-        return true;
-    }
-
-    public boolean onOptionsItemSelected(MenuItem item) {
-        Intent intent = new Intent(this, ChatMenuActivity.class);
-        this.startActivity(intent);
-        return true;
     }
 
 

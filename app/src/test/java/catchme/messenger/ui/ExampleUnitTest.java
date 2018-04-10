@@ -1,4 +1,4 @@
-package catchme.messenger.catchme;
+package catchme.messenger.ui;
 
 import org.junit.Test;
 

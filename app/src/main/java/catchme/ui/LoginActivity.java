@@ -1,4 +1,4 @@
-package catchme.messenger.catchme;
+package catchme.ui;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -31,7 +31,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-import catchme.messenger.net.API;
+import catchme.net.API;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
@@ -90,8 +90,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 attemptLogin();
                 String name = ((AutoCompleteTextView) findViewById(R.id.email)).getText().toString();
                 String password = ((EditText) findViewById(R.id.password)).getText().toString();
-                API api = new API(name, password);
-                //api.saveToken(LoginActivity.this);
+                API
+                        api = new API(name, password);
 
                 Intent intent = new Intent(LoginActivity.this, ChatListActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
