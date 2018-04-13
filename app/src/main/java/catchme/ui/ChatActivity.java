@@ -67,7 +67,6 @@ public class ChatActivity extends AppCompatActivity {
             }
         }
 
-
         @Override
         protected void onProgressUpdate(List<Message>... nm) {
             super.onProgressUpdate(nm);
@@ -77,29 +76,6 @@ public class ChatActivity extends AppCompatActivity {
         }
 
     }
-
-
-    void messagesUpdater() {
-        Thread mesUpdThread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-
-                while (true) {
-
-                    newMessages.clear();
-                    newMessages.addAll(api.getChatMessages(CHAT_ID));
-                    //Log.d("Updater", newMessages.toString());
-                    try {
-                        sleep(5000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        });
-        mesUpdThread.start();
-    }
-
 
     public void send(View view) {
         EditText messageField = findViewById(R.id.messageField);

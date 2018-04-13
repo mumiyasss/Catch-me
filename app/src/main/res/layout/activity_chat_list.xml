@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/cardview_shadow_start_color"
-    tools:context="catchme.messenger.ui.ChatListActivity">
+    tools:context="catchme.ui.ChatListActivity">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv"

@@ -38,7 +38,9 @@ public interface ServerApiInterface {
     */
 
     @GET("lowMes/")
-    Call<List<Chat>> getChats();
+    Call<List<Chat>> getChats(
+            @Header("Authorization") String token // JWT eyJ0...
+    );
 
     @GET("lowMes/messages/")
     Call<List<Message>> getMessages(

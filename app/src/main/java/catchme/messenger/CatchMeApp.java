@@ -8,8 +8,15 @@ import catchme.ui.LoginActivity;
 
 
 public class CatchMeApp extends Application {
-    private API api;
+    private static API api;
 
+
+    public static void setApi(API api) {
+        CatchMeApp.api = api;
+    }
+
+    // TODO: как гарантировать что getAPI не даст null
+    // Решение мб через чтение базы данных?
     public API getApi() {
         return api;
     }
