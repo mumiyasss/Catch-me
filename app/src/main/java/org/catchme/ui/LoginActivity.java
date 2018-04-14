@@ -27,8 +27,10 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.catchme.messenger.CatchMeApp;
+import org.catchme.messenger.Login;
 import org.catchme.net.API;
 
 import java.util.ArrayList;
@@ -86,45 +88,28 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             }
         });
 
-        // TODO: TEST
-        Login login = new Login();
-        login.execute();
-        // TODO: ENDTEST
-
 
         Button mEmailSignInButton = findViewById(R.id.email_sign_in_button);
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                attemptLogin();
-                String name = ((AutoCompleteTextView) findViewById(R.id.email)).getText().toString();
-                String password = ((EditText) findViewById(R.id.password)).getText().toString();
-                Login login = new Login();
-                login.execute();
+            attemptLogin();
+            String name = ((AutoCompleteTextView) findViewById(R.id.email)).getText().toString();
+            String password = ((EditText) findViewById(R.id.password)).getText().toString();
+            Login login = new Login();
+            if (login.attemptLogin(LoginActivity.this, name, password)) {
+                Intent intent = new Intent(LoginActivity.this, ChatListActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+            } else {
+                Toast.makeText(LoginActivity.this,
+                        "Failed to login...", Toast.LENGTH_LONG);
+            }
             }
         });
 
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
-    }
-
-    class Login extends AsyncTask<Void, Void, Boolean> {
-        @Override
-        protected Boolean doInBackground(Void... avoid) {
-            ((CatchMeApp) getApplicationContext()).setApi(
-                    new API("dima", "qwerty")
-            );
-            return true;
-        }
-
-        @Override
-        protected void onPostExecute(Boolean status) {
-            super.onPostExecute(status);
-            Intent intent = new Intent(LoginActivity.this, ChatListActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(intent);
-
-        }
     }
 
     private void populateAutoComplete() {
