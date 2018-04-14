@@ -1,11 +1,11 @@
-package catchme.ui;
+package org.catchme.ui;
 
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 
+import org.catchme.messenger.R;
 
 
 public class LaunchActivity extends AppCompatActivity {

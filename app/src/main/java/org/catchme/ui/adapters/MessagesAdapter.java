@@ -1,4 +1,4 @@
-package catchme.ui.adapters;
+package org.catchme.ui.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,8 +10,8 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-import catchme.net.models.Message;
-import catchme.ui.R;
+import org.catchme.net.models.Message;
+import org.catchme.messenger.R;
 
 
 public class MessagesAdapter extends BaseAdapter {

@@ -1,4 +1,4 @@
-package catchme.ui;
+package org.catchme.ui;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -18,7 +18,6 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -29,12 +28,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import org.catchme.messenger.CatchMeApp;
+import org.catchme.net.API;
+
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
-import catchme.messenger.CatchMeApp;
-import catchme.net.API;
+import org.catchme.messenger.R;
 
 import static android.Manifest.permission.READ_CONTACTS;
 

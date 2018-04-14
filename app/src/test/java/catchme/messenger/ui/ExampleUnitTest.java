@@ -3,8 +3,7 @@ package catchme.messenger.ui;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-import catchme.net.API;
+import org.catchme.net.API;
 /**
  * Example local unit test, which will execute on the development machine (host).
  *

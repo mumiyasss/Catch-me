@@ -1,4 +1,4 @@
-package catchme.ui;
+package org.catchme.ui;
 
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
@@ -9,10 +9,11 @@ import android.support.v7.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-import catchme.messenger.CatchMeApp;
-import catchme.net.API;
-import catchme.net.models.Chat;
-import catchme.ui.adapters.RecyclerAdapter;
+import org.catchme.messenger.CatchMeApp;
+import org.catchme.messenger.R;
+import org.catchme.net.API;
+import org.catchme.net.models.Chat;
+import org.catchme.ui.adapters.RecyclerAdapter;
 
 import static java.lang.Thread.sleep;
 

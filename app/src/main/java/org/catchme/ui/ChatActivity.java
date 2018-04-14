@@ -1,22 +1,22 @@
-package catchme.ui;
+package org.catchme.ui;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ListView;
 
+import org.catchme.ui.adapters.MessagesAdapter;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import catchme.net.API;
-import catchme.net.models.Message;
-import catchme.ui.adapters.MessagesAdapter;
+import org.catchme.messenger.R;
+import org.catchme.net.API;
+import org.catchme.net.models.Message;
 
 import static java.lang.Thread.sleep;
 

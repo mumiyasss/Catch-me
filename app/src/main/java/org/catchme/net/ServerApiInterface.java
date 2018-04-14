@@ -1,11 +1,12 @@
-package catchme.net;
+package org.catchme.net;
 
 
-import catchme.net.models.Account;
-import catchme.net.models.Chat;
-import catchme.net.models.Message;
-import catchme.net.models.SendingMessage;
-import catchme.net.models.Token;
+import org.catchme.net.models.Account;
+import org.catchme.net.models.Chat;
+import org.catchme.net.models.Message;
+import org.catchme.net.models.SendingMessage;
+import org.catchme.net.models.Token;
+
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;

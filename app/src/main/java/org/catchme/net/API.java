@@ -1,20 +1,19 @@
-package catchme.net;
+package org.catchme.net;
 
-import android.os.AsyncTask;
 import android.util.Log;
 
+
+import org.catchme.net.models.Message;
+import org.catchme.net.models.SendingMessage;
+import org.catchme.net.models.Token;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
-import catchme.net.models.Account;
-import catchme.net.models.Chat;
-import catchme.net.models.Message;
-import catchme.net.models.SendingMessage;
-import catchme.net.models.Token;
-import catchme.net.ServerApiInterface;
+import org.catchme.net.models.Account;
+import org.catchme.net.models.Chat;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -98,7 +97,7 @@ public class API {
     }
 
     public void sendMessage(Integer chatId, String message) {
-        final SendingMessage sm = new SendingMessage(message, chatId);
+        final SendingMessage sm = new SendingMessage(chatId, message);
         String conType = "application/json";
         service.sendMessage(conType, token.getToken(), sm).enqueue(new Callback<Message>() {
             @Override

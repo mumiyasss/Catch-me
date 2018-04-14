@@ -1,10 +1,10 @@
-package catchme.messenger;
+package org.catchme.messenger;
 
 import android.app.Application;
 import android.content.Intent;
 
-import catchme.net.API;
-import catchme.ui.LoginActivity;
+import org.catchme.net.API;
+import org.catchme.ui.LoginActivity;
 
 
 public class CatchMeApp extends Application {

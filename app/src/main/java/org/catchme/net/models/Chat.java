@@ -1,4 +1,4 @@
-package catchme.net.models;
+package org.catchme.net.models;
 
 import java.util.List;
 import com.google.gson.annotations.Expose;
