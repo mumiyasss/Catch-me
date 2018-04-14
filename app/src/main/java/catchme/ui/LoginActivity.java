@@ -1,4 +1,4 @@
-package catchme.messenger.catchme;
+package catchme.ui;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -7,7 +7,6 @@ import android.app.LoaderManager.LoaderCallbacks;
 import android.content.CursorLoader;
 import android.content.Intent;
 import android.content.Loader;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
@@ -19,6 +18,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -31,8 +31,10 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
-import catchme.messenger.logic.API;
+import catchme.messenger.CatchMeApp;
+import catchme.net.API;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
@@ -84,6 +86,12 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             }
         });
 
+        // TODO: TEST
+        Login login = new Login();
+        login.execute();
+        // TODO: ENDTEST
+
+
         Button mEmailSignInButton = findViewById(R.id.email_sign_in_button);
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
@@ -91,21 +99,32 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 attemptLogin();
                 String name = ((AutoCompleteTextView) findViewById(R.id.email)).getText().toString();
                 String password = ((EditText) findViewById(R.id.password)).getText().toString();
-
-                CatchMeApp app = ((CatchMeApp) getApplicationContext());
-                app.api = new API(name, password);
-
-                //API api = new API(name, password);
-                //api.saveToken(LoginActivity.this);
-
-                Intent intent = new Intent(LoginActivity.this, ChatListActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(intent);
+                Login login = new Login();
+                login.execute();
             }
         });
 
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
+    }
+
+    class Login extends AsyncTask<Void, Void, Boolean> {
+        @Override
+        protected Boolean doInBackground(Void... avoid) {
+            ((CatchMeApp) getApplicationContext()).setApi(
+                    new API("dima", "qwerty")
+            );
+            return true;
+        }
+
+        @Override
+        protected void onPostExecute(Boolean status) {
+            super.onPostExecute(status);
+            Intent intent = new Intent(LoginActivity.this, ChatListActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+
+        }
     }
 
     private void populateAutoComplete() {

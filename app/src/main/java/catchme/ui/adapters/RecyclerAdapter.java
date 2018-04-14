@@ -1,4 +1,4 @@
-package catchme.messenger.catchme;
+package catchme.ui.adapters;
 
 
 import android.content.Context;
@@ -11,7 +11,9 @@ import android.view.LayoutInflater;
 
 import java.util.List;
 
-import catchme.messenger.logic.models.Chat;
+import catchme.net.models.Chat;
+import catchme.ui.ChatActivity;
+import catchme.ui.R;
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
 

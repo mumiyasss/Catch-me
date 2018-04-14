@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="catchme.messenger.catchme">
+    package="catchme.ui">
 
     <!-- To auto-complete the email text field in the login form with the user's emails -->
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
@@ -9,7 +9,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:name=".CatchMeApp"
+        android:name="catchme.messenger.CatchMeApp"
         android:allowBackup="false"
         android:icon="@mipmap/catch_me"
         android:label="@string/app_name"
@@ -25,23 +25,19 @@
         <meta-data
             android:name="QUERY_LOG"
             android:value="true" />
-        <!--<meta-data-->
-            <!--android:name="DOMAIN_PACKAGE_NAME"-->
-            <!--android:value="catchme.messenger.catchme" />-->
 
-        <activity android:name=".MainActivity">
+        <activity android:name="catchme.ui.LaunchActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ChatListActivity" />
+        <activity android:name="catchme.ui.ChatListActivity" />
         <activity
-            android:name=".LoginActivity"
+            android:name="catchme.ui.LoginActivity"
             android:label="@string/title_activity_login" />
-        <activity android:name=".ChatActivity" />
-        <activity android:name=".ChatMenuActivity" />
+        <activity android:name="catchme.ui.ChatActivity" />
     </application>
 
 </manifest>

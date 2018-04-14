@@ -1,17 +1,16 @@
-package catchme.messenger.logic;
+package catchme.net;
 
 
-import catchme.messenger.logic.models.Account;
-import catchme.messenger.logic.models.Chat;
-import catchme.messenger.logic.models.Message;
-import catchme.messenger.logic.models.SendingMessage;
-import catchme.messenger.logic.models.Token;
+import catchme.net.models.Account;
+import catchme.net.models.Chat;
+import catchme.net.models.Message;
+import catchme.net.models.SendingMessage;
+import catchme.net.models.Token;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
-import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 import java.util.List;
