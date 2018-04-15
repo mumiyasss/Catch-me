@@ -1,15 +1,28 @@
 package org.catchme.messenger;
 
 import android.app.Application;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.util.Log;
 
 import org.catchme.net.API;
+import org.catchme.net.models.Token;
+import org.catchme.ui.ChatListActivity;
 import org.catchme.ui.LoginActivity;
-
 
 public class CatchMeApp extends Application {
     private static API api;
+    private static CatchMeApp instance;
 
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        instance = this;
+
+
+    }
 
     public static void setApi(API api) {
         CatchMeApp.api = api;
@@ -21,13 +34,7 @@ public class CatchMeApp extends Application {
         return api;
     }
 
-    @Override
-    public void onCreate() {
-        super.onCreate();
-
-        Intent intent;
-        intent = new Intent(this, LoginActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity(intent);
+    public static CatchMeApp getInstance() {
+        return instance;
     }
 }

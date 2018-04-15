@@ -11,6 +11,12 @@ public class Token {
 
     public Token(String token) {
         this.token = "JWT " + token;
+        cutUnnecessaryJWT();
+    }
+
+
+    private void cutUnnecessaryJWT() {
+        token = token.replace("JWT JWT ", "JWT ");
     }
 
     public String getToken() {

@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ListView;
 
+import org.catchme.net.models.Token;
 import org.catchme.ui.adapters.MessagesAdapter;
 
 import java.util.ArrayList;
@@ -28,7 +29,7 @@ public class ChatActivity extends AppCompatActivity {
 
     String token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo1LCJ1c2VybmFtZSI6Imxlc3lhIiwiZXhwIjoxNTIyMDUxMTEzLCJlbWFpbCI6Imxlc3lhQG1haWwucnUifQ.JUMsvi1KH_yaLJSctIH3iXy_3rsnr5eZSbF0i5pxIyY";
 
-    API api = new API(token);
+    API api = new API(new Token(token));
 
     Intent intent = getIntent();
     int CHAT_ID ;

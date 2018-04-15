@@ -46,23 +46,22 @@ public class API {
         getToken(name, password);
     }
 
-    public API(String token) {
+    public API(Token token) {
         this();
-        this.token = new Token(token);
+        this.token = token;
     }
-
 
     private void getToken(String name, String password) {
         final Account account = new Account(name, password);
         try {
-            Response<Token> response = service.getToken("application/json", account).execute();
+            Response<Token> response = service.
+                    getToken("application/json", account).execute();
+
             token = new Token(response.body().getToken());
-            //Log.d("Response", token.toString());
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-
 
     public List<Chat> getChatList() {
         final List<Chat> chats = new ArrayList<>();

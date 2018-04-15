@@ -29,7 +29,7 @@ public class ChatListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_list);
-        api = ((CatchMeApp) getApplicationContext()).getApi();
+        api = CatchMeApp.getInstance().getApi();
         ChatListUpdater chatListUpdater = new ChatListUpdater();
         chatListUpdater.execute();
         RecyclerView = findViewById(R.id.rv);

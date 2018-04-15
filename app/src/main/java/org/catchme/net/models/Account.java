@@ -1,5 +1,7 @@
 package org.catchme.net.models;
 
+import android.arch.persistence.room.Entity;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -10,6 +12,7 @@ import com.google.gson.annotations.SerializedName;
  * Author: cosmos
 */
 
+@Entity
 public class Account {
 
     @SerializedName("username")
