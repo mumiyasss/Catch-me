@@ -21,7 +21,7 @@ public class LaunchActivity extends AppCompatActivity {
 
         sPref = getSharedPreferences("Token", MODE_PRIVATE);
         String token = sPref.getString("TOKEN", "NO_TOKEN");
-        Log.d("SPREF", token);
+
         if(token.equals("NO_TOKEN")) {
             Intent intent;
             intent = new Intent(this, LoginActivity.class);

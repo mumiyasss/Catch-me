@@ -2,13 +2,10 @@ package org.catchme.messenger;
 
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 
 import org.catchme.net.API;
-import org.catchme.ui.ChatListActivity;
-import org.catchme.ui.LoginActivity;
 
 import java.util.concurrent.ExecutionException;
 
@@ -19,7 +16,6 @@ public class Login extends AsyncTask<Void, Void, Boolean> {
     private String password;
     private CatchMeApp app;
     private Context context;
-
 
     /**
      *

@@ -1,4 +1,7 @@
 package org.catchme.ui.fragments;
 
-public class ChatListFragment {
+import android.support.v4.app.Fragment;
+
+public class ChatListFragment extends Fragment {
+
 }

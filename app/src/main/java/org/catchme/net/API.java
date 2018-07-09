@@ -7,6 +7,8 @@ import org.catchme.net.models.Message;
 import org.catchme.net.models.SendingMessage;
 import org.catchme.net.models.Token;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -74,6 +76,7 @@ public class API {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
         return chats;
     }
 

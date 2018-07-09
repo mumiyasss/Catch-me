@@ -1,15 +1,8 @@
 package org.catchme.messenger;
 
 import android.app.Application;
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.util.Log;
 
 import org.catchme.net.API;
-import org.catchme.net.models.Token;
-import org.catchme.ui.ChatListActivity;
-import org.catchme.ui.LoginActivity;
 
 public class CatchMeApp extends Application {
     private static API api;

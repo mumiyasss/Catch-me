@@ -33,11 +33,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="org.catchme.ui.ChatListActivity" />
         <activity
             android:name="org.catchme.ui.LoginActivity"
             android:label="@string/title_activity_login" />
-        <activity android:name="org.catchme.ui.ChatActivity" />
+        <activity android:name="org.catchme.ui.ChatListActivity"></activity>
     </application>
 
 </manifest>
